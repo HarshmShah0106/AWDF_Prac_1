@@ -1,31 +1,35 @@
-import Header from "./components/Header";
-import About from "./components/About";
-import Skills from "./components/Skills";
-import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+
+import Home from "./components/Home";
+
+import Projects from "./components/Projects";
+
+import Contact from "./components/Contact";
+
+import { Routes, Route } from "react-router-dom";
 
 function App() {
 
-  const skills = [
-    "Python",
-    "Bash",
-    "Security Analysis (SOC)",
-    "DBMS",
-    "Networks and Protocols",
-    "Vulnerability Assessment",
-    "Shell Scripting",
-  ];
+    return (
 
-  return (
-    <>
-      <Header name="Harsh Shah" />
+        <>
 
-      <About />
+            <Navbar />
 
-      <Skills skills={skills} />
+            <Routes>
 
-      <Footer />
-    </>
-  );
+                <Route path="/" element={<Home />} />
+
+                <Route path="/projects" element={<Projects />} />
+
+                <Route path="/contact" element={<Contact />} />
+
+            </Routes>
+
+        </>
+
+    );
+
 }
 
 export default App;
