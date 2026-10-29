@@ -31,6 +31,11 @@
   padding: 0;
 }
 
+html {
+  color-scheme: dark;
+  background-color: #030704;
+}
+
 body {
   background-color: var(--bg-void);
   color: var(--text-main);
