@@ -1,6 +1,6 @@
 # Multi-stage build for React Portfolio Frontend
-# Stage 1: Build the React application
-FROM node:18-alpine AS build
+# Use Node 20 (LTS) which includes node:util styleText required by modern Vite / Rolldown
+FROM node:20-alpine AS build
 
 WORKDIR /app
 

@@ -1,7 +1,7 @@
-import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import Projects from "./components/Projects";
-import Contact from "./components/Contact";
+import Navbar from "./Components/Navbar";
+import Home from "./Components/Home";
+import Projects from "./Components/Projects";
+import Contact from "./Components/Contact";
 
 import { Routes, Route } from "react-router-dom";
 
