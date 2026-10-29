@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ShieldAlert, Code2, Terminal, Cpu, Check, Filter } from "lucide-react";
+import { ShieldAlert, Code2, Terminal, Cpu } from "lucide-react";
 
 function Skills() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -7,10 +7,10 @@ function Skills() {
   const skillGroups = [
     {
       category: "cyber",
-      name: "Cyber Security & Defense",
-      icon: <ShieldAlert size={18} color="#10b981" />,
+      name: "Cyber Security & Defensive Auditing",
+      icon: <ShieldAlert size={19} color="#00ff66" />,
       items: [
-        { name: "OWASP Top 10 Vulnerabilities", level: "Advanced", desc: "SQLi, XSS, CSRF, IDOR prevention" },
+        { name: "OWASP Top 10 Mitigation", level: "Advanced", desc: "SQLi, XSS, CSRF, IDOR prevention" },
         { name: "Web Application Pentesting", level: "Proficient", desc: "Security auditing and intercepting proxies" },
         { name: "Bcrypt & JWT Auth Pipelines", level: "Advanced", desc: "Password salting and stateless tokens" },
         { name: "Cryptography & Hashing", level: "Proficient", desc: "SHA-256, AES-256, HMAC verification" },
@@ -20,8 +20,8 @@ function Skills() {
     },
     {
       category: "dev",
-      name: "Modern Web Frameworks",
-      icon: <Code2 size={18} color="#06b6d4" />,
+      name: "Modern Web Engineering",
+      icon: <Code2 size={19} color="#00ff66" />,
       items: [
         { name: "React 19 & React Router", level: "Advanced", desc: "Hooks, Suspense, code splitting" },
         { name: "Node.js & Express.js", level: "Advanced", desc: "RESTful architecture, custom middleware" },
@@ -33,15 +33,15 @@ function Skills() {
     },
     {
       category: "devops",
-      name: "DevOps & Infrastructure",
-      icon: <Terminal size={18} color="#38bdf8" />,
+      name: "DevSecOps & Infrastructure",
+      icon: <Terminal size={19} color="#00ff66" />,
       items: [
         { name: "Docker Containerization", level: "Advanced", desc: "Custom Dockerfiles, multi-stage builds" },
         { name: "Docker Compose Orchestration", level: "Advanced", desc: "Multi-service stacks, bridge networks" },
         { name: "In-Memory Caching (node-cache)", level: "Advanced", desc: "Query speedup and TTL invalidation" },
         { name: "Git & Version Control", level: "Advanced", desc: "Branching strategies, CI/CD fundamentals" },
-        { name: "Bash & Command Line", level: "Proficient", desc: "Automation scripts, Linux workflows" },
-        { name: "Persistent Volumes", level: "Proficient", desc: "Named storage and stateful containers" },
+        { name: "Bash & Linux CLI", level: "Proficient", desc: "Automation scripts, Linux workflows" },
+        { name: "Persistent Storage Volumes", level: "Proficient", desc: "Named storage and stateful containers" },
       ],
     },
   ];
@@ -60,18 +60,18 @@ function Skills() {
           alignItems: "flex-end",
           flexWrap: "wrap",
           gap: "16px",
-          marginBottom: "28px",
+          marginBottom: "30px",
           textAlign: "left",
         }}
       >
         <div>
           <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
-            <Cpu size={14} color="#06b6d4" />
-            <span style={{ fontSize: "12px", color: "#06b6d4", fontFamily: "var(--font-mono)", fontWeight: 600 }}>
+            <Cpu size={14} color="#00ff66" />
+            <span style={{ fontSize: "12px", color: "#00ff66", fontFamily: "var(--font-mono)", fontWeight: 700 }}>
               TECHNICAL ARSENAL // SKILLS
             </span>
           </div>
-          <h2 style={{ fontSize: "28px", color: "#f8fafc", fontWeight: 700 }}>
+          <h2 style={{ fontSize: "28px", color: "#ffffff", fontWeight: 700 }}>
             Categorized Competencies
           </h2>
         </div>
@@ -88,13 +88,14 @@ function Skills() {
               key={tab.id}
               onClick={() => setActiveCategory(tab.id)}
               style={{
-                background: activeCategory === tab.id ? "rgba(16, 185, 129, 0.2)" : "rgba(15, 23, 42, 0.6)",
-                color: activeCategory === tab.id ? "#10b981" : "#94a3b8",
-                border: activeCategory === tab.id ? "1px solid #10b981" : "1px solid rgba(56, 189, 248, 0.2)",
-                padding: "6px 14px",
+                background: activeCategory === tab.id ? "rgba(0, 255, 102, 0.2)" : "rgba(6, 17, 9, 0.7)",
+                color: activeCategory === tab.id ? "#00ff66" : "#a7f3d0",
+                border: activeCategory === tab.id ? "1px solid #00ff66" : "1px solid rgba(0, 255, 102, 0.25)",
+                boxShadow: activeCategory === tab.id ? "0 0 15px rgba(0, 255, 102, 0.3)" : "none",
+                padding: "7px 15px",
                 borderRadius: "6px",
                 fontSize: "13px",
-                fontWeight: 500,
+                fontWeight: 600,
                 cursor: "pointer",
                 transition: "all 0.2s ease",
               }}
@@ -106,27 +107,31 @@ function Skills() {
       </div>
 
       {/* Skills Matrix */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "28px", textAlign: "left" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "26px", textAlign: "left" }}>
         {filteredGroups.map((group, gIdx) => (
-          <div key={gIdx} className="cyber-card" style={{ padding: "24px" }}>
+          <div key={gIdx} className="cyber-card" style={{ padding: "26px" }}>
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
                 gap: "10px",
                 marginBottom: "20px",
-                borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
+                borderBottom: "1px solid rgba(0, 255, 102, 0.2)",
                 paddingBottom: "12px",
               }}
             >
               {group.icon}
-              <h3 style={{ fontSize: "18px", color: "#f8fafc" }}>{group.name}</h3>
+              <h3 style={{ fontSize: "18.5px", color: "#ffffff" }}>{group.name}</h3>
               <span
                 style={{
-                  fontSize: "12px",
-                  color: "#64748b",
+                  fontSize: "11.5px",
+                  color: "#00ff66",
                   fontFamily: "var(--font-mono)",
                   marginLeft: "auto",
+                  background: "rgba(0, 255, 102, 0.1)",
+                  padding: "2px 8px",
+                  borderRadius: "4px",
+                  border: "1px solid rgba(0, 255, 102, 0.25)",
                 }}
               >
                 {group.items.length} MODULES
@@ -144,8 +149,8 @@ function Skills() {
                 <div
                   key={sIdx}
                   style={{
-                    background: "rgba(11, 15, 25, 0.6)",
-                    border: "1px solid rgba(56, 189, 248, 0.12)",
+                    background: "rgba(3, 8, 4, 0.8)",
+                    border: "1px solid rgba(0, 255, 102, 0.18)",
                     borderRadius: "8px",
                     padding: "14px 16px",
                     display: "flex",
@@ -154,24 +159,28 @@ function Skills() {
                     transition: "all 0.2s ease",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(16, 185, 129, 0.35)";
-                    e.currentTarget.style.background = "rgba(15, 23, 42, 0.8)";
+                    e.currentTarget.style.borderColor = "#00ff66";
+                    e.currentTarget.style.background = "rgba(6, 20, 10, 0.95)";
+                    e.currentTarget.style.boxShadow = "0 0 15px rgba(0, 255, 102, 0.25)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(56, 189, 248, 0.12)";
-                    e.currentTarget.style.background = "rgba(11, 15, 25, 0.6)";
+                    e.currentTarget.style.borderColor = "rgba(0, 255, 102, 0.18)";
+                    e.currentTarget.style.background = "rgba(3, 8, 4, 0.8)";
+                    e.currentTarget.style.boxShadow = "none";
                   }}
                 >
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "8px" }}>
-                    <span style={{ fontSize: "14px", fontWeight: 600, color: "#f1f5f9" }}>
+                    <span style={{ fontSize: "14px", fontWeight: 700, color: "#f0fdf4" }}>
                       {skill.name}
                     </span>
                     <span
                       style={{
                         fontSize: "11px",
                         fontFamily: "var(--font-mono)",
-                        color: skill.level === "Advanced" ? "#34d399" : "#38bdf8",
-                        background: skill.level === "Advanced" ? "rgba(16, 185, 129, 0.12)" : "rgba(56, 189, 248, 0.12)",
+                        fontWeight: 600,
+                        color: "#00ff66",
+                        background: "rgba(0, 255, 102, 0.15)",
+                        border: "1px solid rgba(0, 255, 102, 0.4)",
                         padding: "2px 6px",
                         borderRadius: "4px",
                         whiteSpace: "nowrap",
@@ -181,7 +190,7 @@ function Skills() {
                     </span>
                   </div>
 
-                  <p style={{ fontSize: "12px", color: "#94a3b8", marginTop: "6px" }}>
+                  <p style={{ fontSize: "12.5px", color: "#86efac", marginTop: "6px" }}>
                     {skill.desc}
                   </p>
                 </div>

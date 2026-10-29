@@ -9,13 +9,14 @@ function ErrorMessage({ message, onRetry }) {
         maxWidth: "600px",
         margin: "30px auto",
         textAlign: "center",
-        border: "1px solid rgba(239, 68, 68, 0.4)",
-        background: "rgba(239, 68, 68, 0.05)",
+        border: "1px solid rgba(239, 68, 68, 0.6)",
+        background: "rgba(239, 68, 68, 0.08)",
+        boxShadow: "0 0 20px rgba(239, 68, 68, 0.2)",
       }}
     >
       <AlertTriangle size={36} color="#ef4444" style={{ margin: "0 auto 12px" }} />
-      <h3 style={{ color: "#f8fafc", fontSize: "18px", marginBottom: "8px" }}>
-        Transmission Interruption Encountered
+      <h3 style={{ color: "#ffffff", fontSize: "18px", marginBottom: "8px", fontWeight: 700 }}>
+        Telemetry Connection Disrupted
       </h3>
       <p
         style={{
@@ -25,7 +26,7 @@ function ErrorMessage({ message, onRetry }) {
           marginBottom: "20px",
         }}
       >
-        {message || "Unable to reach GitHub telemetry endpoint."}
+        {message || "Unable to reach remote telemetry endpoint."}
       </p>
 
       {onRetry && (
@@ -33,12 +34,13 @@ function ErrorMessage({ message, onRetry }) {
           onClick={onRetry}
           className="btn-cyber-primary"
           style={{
-            background: "linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)",
+            background: "linear-gradient(135deg, #ef4444 0%, #dc2626 100%)",
             color: "#ffffff",
+            boxShadow: "0 0 15px rgba(239, 68, 68, 0.4)",
           }}
         >
           <RefreshCw size={15} />
-          <span>Retry Connection</span>
+          <span>Re-establish Connection</span>
         </button>
       )}
     </div>

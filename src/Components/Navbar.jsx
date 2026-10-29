@@ -1,5 +1,5 @@
 import { NavLink, Link } from "react-router-dom";
-import { ShieldCheck, Terminal, FolderGit2, Wrench, Mail, ExternalLink } from "lucide-react";
+import { ShieldAlert, Terminal, FolderGit2, Wrench, Mail, ExternalLink } from "lucide-react";
 
 const GithubIcon = ({ size = 15 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -13,15 +13,16 @@ function Navbar() {
     display: "flex",
     alignItems: "center",
     gap: "6px",
-    color: isActive ? "#10b981" : "#94a3b8",
-    background: isActive ? "rgba(16, 185, 129, 0.1)" : "transparent",
+    color: isActive ? "#00ff66" : "#a7f3d0",
+    background: isActive ? "rgba(0, 255, 102, 0.15)" : "transparent",
     padding: "8px 14px",
     borderRadius: "8px",
     textDecoration: "none",
-    fontSize: "14px",
-    fontWeight: "500",
+    fontSize: "13.5px",
+    fontWeight: "600",
     transition: "all 0.2s ease",
-    border: isActive ? "1px solid rgba(16, 185, 129, 0.3)" : "1px solid transparent",
+    border: isActive ? "1px solid #00ff66" : "1px solid transparent",
+    boxShadow: isActive ? "0 0 15px rgba(0, 255, 102, 0.25)" : "none",
   });
 
   return (
@@ -30,10 +31,11 @@ function Navbar() {
         position: "sticky",
         top: 0,
         zIndex: 50,
-        background: "rgba(7, 10, 18, 0.85)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-        borderBottom: "1px solid rgba(56, 189, 248, 0.15)",
+        background: "rgba(3, 7, 4, 0.92)",
+        backdropFilter: "blur(14px)",
+        WebkitBackdropFilter: "blur(14px)",
+        borderBottom: "1px solid rgba(0, 255, 102, 0.25)",
+        boxShadow: "0 4px 20px rgba(0, 0, 0, 0.8)",
       }}
     >
       <div
@@ -54,48 +56,50 @@ function Navbar() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "10px",
+            gap: "11px",
             textDecoration: "none",
           }}
         >
           <div
             style={{
-              width: "36px",
-              height: "36px",
+              width: "38px",
+              height: "38px",
               borderRadius: "8px",
-              background: "linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(6, 182, 212, 0.2))",
-              border: "1px solid rgba(16, 185, 129, 0.4)",
+              background: "rgba(0, 255, 102, 0.12)",
+              border: "1px solid #00ff66",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "#10b981",
+              color: "#00ff66",
+              boxShadow: "0 0 14px rgba(0, 255, 102, 0.3)",
             }}
           >
-            <ShieldCheck size={20} />
+            <ShieldAlert size={21} />
           </div>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               <span
                 style={{
-                  fontWeight: "700",
-                  fontSize: "17px",
-                  letterSpacing: "-0.02em",
-                  color: "#f8fafc",
+                  fontWeight: "800",
+                  fontSize: "18px",
+                  letterSpacing: "-0.01em",
+                  color: "#ffffff",
                 }}
               >
-                HARSH<span style={{ color: "#10b981" }}>.SEC</span>
+                HARSH<span style={{ color: "#00ff66", textShadow: "0 0 10px #00ff66" }}>.SEC</span>
               </span>
               <span className="live-pulse" title="System Security Active"></span>
             </div>
             <p
               style={{
-                fontSize: "11px",
-                color: "#64748b",
+                fontSize: "10.5px",
+                color: "#4ade80",
                 fontFamily: "var(--font-mono)",
-                letterSpacing: "0.02em",
+                letterSpacing: "0.06em",
+                fontWeight: 600,
               }}
             >
-              CSPIT // CYBER RESEARCH
+              DEFENSE & SECURITY ARCHITECTURE
             </p>
           </div>
         </Link>
@@ -104,22 +108,22 @@ function Navbar() {
         <nav style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
           <NavLink to="/" style={navLinkStyle}>
             <Terminal size={15} />
-            <span>Home</span>
+            <span>Terminal</span>
           </NavLink>
 
           <NavLink to="/projects" style={navLinkStyle}>
             <FolderGit2 size={15} />
-            <span>Projects</span>
+            <span>Codebase</span>
           </NavLink>
 
           <NavLink to="/tools" style={navLinkStyle}>
             <Wrench size={15} />
-            <span>Security Lab</span>
+            <span>Cyber Lab</span>
           </NavLink>
 
           <NavLink to="/contact" style={navLinkStyle}>
             <Mail size={15} />
-            <span>Contact</span>
+            <span>Transmission</span>
           </NavLink>
 
           <a
@@ -130,16 +134,24 @@ function Navbar() {
               display: "flex",
               alignItems: "center",
               gap: "6px",
-              color: "#38bdf8",
-              background: "rgba(56, 189, 248, 0.1)",
-              border: "1px solid rgba(56, 189, 248, 0.25)",
-              padding: "7px 12px",
+              color: "#00ff66",
+              background: "rgba(0, 255, 102, 0.1)",
+              border: "1px solid rgba(0, 255, 102, 0.4)",
+              padding: "7px 13px",
               borderRadius: "8px",
               textDecoration: "none",
               fontSize: "13px",
-              fontWeight: "500",
+              fontWeight: "600",
               marginLeft: "6px",
               transition: "all 0.2s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = "0 0 15px rgba(0, 255, 102, 0.45)";
+              e.currentTarget.style.background = "rgba(0, 255, 102, 0.2)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = "none";
+              e.currentTarget.style.background = "rgba(0, 255, 102, 0.1)";
             }}
             title="GitHub Profile"
           >

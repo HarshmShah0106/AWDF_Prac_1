@@ -3,16 +3,16 @@ import { Terminal, Shield, ArrowRight, Wrench, Lock, Cpu, Server, CheckCircle2 }
 
 function Header({ name }) {
   return (
-    <section style={{ padding: "40px 0 20px" }}>
-      {/* Top Cyber Badge */}
-      <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
+    <section style={{ padding: "40px 0 24px" }}>
+      {/* Top Cyber Badges */}
+      <div style={{ display: "inline-flex", alignItems: "center", gap: "10px", marginBottom: "18px", flexWrap: "wrap" }}>
         <span className="cyber-badge">
           <Shield size={13} />
-          DEFENSIVE SECURITY & FULL-STACK ENGINEERING
+          OFFENSIVE & DEFENSIVE WEB SECURITY
         </span>
-        <span className="cyber-badge cyber-badge-cyan">
+        <span className="cyber-badge" style={{ background: "rgba(0, 255, 102, 0.08)", borderColor: "rgba(0, 255, 102, 0.2)" }}>
           <CheckCircle2 size={13} />
-          CSPIT • CHARUSAT
+          B.TECH IT • APPLIED CYBERSECURITY
         </span>
       </div>
 
@@ -20,52 +20,52 @@ function Header({ name }) {
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-          gap: "36px",
+          gap: "40px",
           alignItems: "center",
           textAlign: "left",
         }}
       >
-        {/* Left Bio & Action Column */}
+        {/* Left Column */}
         <div>
           <h1
             style={{
-              fontSize: "clamp(32px, 5vw, 48px)",
+              fontSize: "clamp(34px, 5.2vw, 50px)",
               lineHeight: 1.15,
-              fontWeight: 700,
+              fontWeight: 800,
               marginBottom: "16px",
-              color: "#f8fafc",
+              color: "#ffffff",
             }}
           >
             Hi, I'm <span className="gradient-text">{name || "Harsh Shah"}</span>.
             <br />
-            <span style={{ fontSize: "0.85em", color: "#94a3b8", fontWeight: 500 }}>
-              Cybersecurity Analyst & Web Architect.
+            <span style={{ fontSize: "0.8em", color: "#86efac", fontWeight: 600 }}>
+              Cybersecurity Researcher & Full-Stack Architect.
             </span>
           </h1>
 
           <p
             style={{
               fontSize: "16px",
-              color: "#94a3b8",
-              lineHeight: 1.6,
+              color: "#bbf7d0",
+              lineHeight: 1.65,
               marginBottom: "28px",
               maxWidth: "560px",
             }}
           >
-            Engineering resilient, high-performance web systems with a security-first mindset.
-            Specializing in OWASP Top 10 mitigation, multi-container Docker architectures, and modern React interfaces.
+            Engineering robust defense frameworks, conducting web application vulnerability assessments,
+            and containerizing production-grade full-stack architectures with zero-trust design.
           </p>
 
           {/* Action CTAs */}
-          <div style={{ display: "flex", gap: "14px", flexWrap: "wrap", marginBottom: "32px" }}>
+          <div style={{ display: "flex", gap: "14px", flexWrap: "wrap", marginBottom: "34px" }}>
             <Link to="/projects" className="btn-cyber-primary">
-              <span>View Repositories</span>
+              <span>Inspect Codebase</span>
               <ArrowRight size={16} />
             </Link>
 
             <Link to="/tools" className="btn-cyber-secondary">
               <Wrench size={16} />
-              <span>Launch Security Lab</span>
+              <span>Launch Cyber Lab</span>
             </Link>
           </div>
 
@@ -73,86 +73,86 @@ function Header({ name }) {
           <div
             style={{
               display: "flex",
-              gap: "18px",
+              gap: "20px",
               flexWrap: "wrap",
-              borderTop: "1px solid rgba(56, 189, 248, 0.15)",
-              paddingTop: "20px",
+              borderTop: "1px solid rgba(0, 255, 102, 0.2)",
+              paddingTop: "22px",
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              <Lock size={16} color="#10b981" />
-              <span style={{ fontSize: "13px", color: "#cbd5e1" }}>Penetration Testing</span>
+              <Lock size={16} color="#00ff66" />
+              <span style={{ fontSize: "13px", color: "#dcfce7", fontWeight: 500 }}>OWASP Top 10 Auditing</span>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              <Server size={16} color="#06b6d4" />
-              <span style={{ fontSize: "13px", color: "#cbd5e1" }}>Docker Orchestration</span>
+              <Server size={16} color="#00ff66" />
+              <span style={{ fontSize: "13px", color: "#dcfce7", fontWeight: 500 }}>Multi-Container Docker</span>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              <Cpu size={16} color="#38bdf8" />
-              <span style={{ fontSize: "13px", color: "#cbd5e1" }}>Modern Web Frameworks</span>
+              <Cpu size={16} color="#00ff66" />
+              <span style={{ fontSize: "13px", color: "#dcfce7", fontWeight: 500 }}>High-Performance React</span>
             </div>
           </div>
         </div>
 
-        {/* Right Cyber Terminal Card */}
+        {/* Right Column: Neon Terminal Window */}
         <div>
           <div className="terminal-window">
             <div className="terminal-header">
               <span className="terminal-dot dot-red"></span>
               <span className="terminal-dot dot-yellow"></span>
               <span className="terminal-dot dot-green"></span>
-              <span className="terminal-title">harsh@cspit-lab:~ (bash)</span>
+              <span className="terminal-title">harsh@cybersec-ops:~ (bash)</span>
             </div>
 
-            <div className="terminal-body" style={{ color: "#cbd5e1" }}>
-              <div style={{ marginBottom: "10px" }}>
-                <span style={{ color: "#10b981" }}>harsh@cybersec</span>
-                <span style={{ color: "#64748b" }}>:</span>
-                <span style={{ color: "#38bdf8" }}>~</span>
-                <span style={{ color: "#94a3b8" }}>$ </span>
-                <span style={{ color: "#f8fafc" }}>whoami</span>
-                <div style={{ color: "#94a3b8", marginLeft: "14px", marginTop: "4px" }}>
-                  → Harsh Shah // B.Tech IT Engineer (CSPIT)
+            <div className="terminal-body" style={{ color: "#dcfce7" }}>
+              <div style={{ marginBottom: "12px" }}>
+                <span style={{ color: "#00ff66", fontWeight: "bold" }}>harsh@cybersec</span>
+                <span style={{ color: "#4ade80" }}>:</span>
+                <span style={{ color: "#86efac" }}>~</span>
+                <span style={{ color: "#00ff66" }}>$ </span>
+                <span style={{ color: "#ffffff", fontWeight: 600 }}>whoami</span>
+                <div style={{ color: "#86efac", marginLeft: "14px", marginTop: "4px" }}>
+                  → Harsh Shah // Cybersecurity Researcher & Full-Stack Engineer
                 </div>
               </div>
 
-              <div style={{ marginBottom: "10px" }}>
-                <span style={{ color: "#10b981" }}>harsh@cybersec</span>
-                <span style={{ color: "#64748b" }}>:</span>
-                <span style={{ color: "#38bdf8" }}>~</span>
-                <span style={{ color: "#94a3b8" }}>$ </span>
-                <span style={{ color: "#f8fafc" }}>cat security-focus.json</span>
+              <div style={{ marginBottom: "12px" }}>
+                <span style={{ color: "#00ff66", fontWeight: "bold" }}>harsh@cybersec</span>
+                <span style={{ color: "#4ade80" }}>:</span>
+                <span style={{ color: "#86efac" }}>~</span>
+                <span style={{ color: "#00ff66" }}>$ </span>
+                <span style={{ color: "#ffffff", fontWeight: 600 }}>cat defense-matrix.json</span>
                 <div
                   style={{
-                    color: "#06b6d4",
-                    background: "rgba(6, 182, 212, 0.05)",
-                    borderLeft: "2px solid #06b6d4",
-                    padding: "6px 12px",
-                    marginTop: "4px",
+                    color: "#00ff66",
+                    background: "rgba(0, 255, 102, 0.06)",
+                    borderLeft: "2px solid #00ff66",
+                    padding: "8px 12px",
+                    marginTop: "5px",
                     borderRadius: "0 6px 6px 0",
                     fontSize: "12.5px",
                   }}
                 >
                   {"{"}
                   <br />
-                  &nbsp;&nbsp;"offensive": "Web Vulnerability Assessment & CTF",
+                  &nbsp;&nbsp;"offensive": "Penetration Testing, XSS, SQLi, CSRF",
                   <br />
-                  &nbsp;&nbsp;"defensive": "JWT Auth, Rate Limiting, Node-Cache",
+                  &nbsp;&nbsp;"defensive": "JWT Authentication, Bcrypt, Node-Cache",
                   <br />
-                  &nbsp;&nbsp;"infrastructure": "Docker, Bridge Networks, Alpine"
+                  &nbsp;&nbsp;"infrastructure": "Docker Compose, Bridge Networks, Alpine"
                   <br />
                   {"}"}
                 </div>
               </div>
 
               <div>
-                <span style={{ color: "#10b981" }}>harsh@cybersec</span>
-                <span style={{ color: "#64748b" }}>:</span>
-                <span style={{ color: "#38bdf8" }}>~</span>
-                <span style={{ color: "#94a3b8" }}>$ </span>
-                <span style={{ color: "#f8fafc" }}>systemctl is-active security-grid</span>
-                <div style={{ color: "#34d399", marginLeft: "14px", marginTop: "4px" }}>
-                  ● ACTIVE (running) • Containers Online <span className="cursor-blink">_</span>
+                <span style={{ color: "#00ff66", fontWeight: "bold" }}>harsh@cybersec</span>
+                <span style={{ color: "#4ade80" }}>:</span>
+                <span style={{ color: "#86efac" }}>~</span>
+                <span style={{ color: "#00ff66" }}>$ </span>
+                <span style={{ color: "#ffffff", fontWeight: 600 }}>systemctl status security-grid</span>
+                <div style={{ color: "#00ff66", marginLeft: "14px", marginTop: "4px" }}>
+                  ● ACTIVE (Running) • Microservices Encrypted <span className="cursor-blink">_</span>
                 </div>
               </div>
             </div>

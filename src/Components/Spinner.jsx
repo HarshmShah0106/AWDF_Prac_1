@@ -13,10 +13,11 @@ function Spinner() {
       }}
     >
       <Loader2
-        size={36}
-        color="#10b981"
+        size={38}
+        color="#00ff66"
         style={{
-          animation: "spin 1s linear infinite",
+          animation: "spin 0.9s linear infinite",
+          filter: "drop-shadow(0 0 10px rgba(0, 255, 102, 0.5))",
         }}
       />
       <style>{`
@@ -29,11 +30,13 @@ function Spinner() {
         style={{
           fontFamily: "var(--font-mono)",
           fontSize: "13px",
-          color: "#94a3b8",
-          letterSpacing: "0.05em",
+          color: "#00ff66",
+          letterSpacing: "0.06em",
+          fontWeight: 700,
+          textShadow: "0 0 8px rgba(0, 255, 102, 0.4)",
         }}
       >
-        FETCHING REPOSITORY TELEMETRY...
+        INTERCEPTING TELEMETRY STREAMS...
       </span>
     </div>
   );

@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
-import { ShieldCheck, Lock, Hash, Key, Copy, Check, RefreshCw, Eye, EyeOff, ShieldAlert, Sparkles } from "lucide-react";
+import { ShieldCheck, Lock, Hash, Key, Copy, Check, Eye, EyeOff, Sparkles } from "lucide-react";
 
 function SecurityTools() {
   const [activeTab, setActiveTab] = useState("password");
 
   // --- Tool 1: Password Analyzer State ---
-  const [password, setPassword] = useState("CyberSec#2026!CSPIT");
+  const [password, setPassword] = useState("CyberSec#2026!Defense");
   const [showPassword, setShowPassword] = useState(false);
   const [entropy, setEntropy] = useState(0);
   const [crackTime, setCrackTime] = useState("");
   const [strengthLabel, setStrengthLabel] = useState("");
-  const [strengthColor, setStrengthColor] = useState("#10b981");
+  const [strengthColor, setStrengthColor] = useState("#00ff66");
 
   // --- Tool 2: Hash Generator State ---
-  const [hashInput, setHashInput] = useState("Hello from Harsh Security Lab");
+  const [hashInput, setHashInput] = useState("Harsh Shah // Defensive Cyber Lab");
   const [sha256Hash, setSha256Hash] = useState("");
   const [hashAlgorithm, setHashAlgorithm] = useState("SHA-256");
   const [copiedHash, setCopiedHash] = useState(false);
@@ -34,7 +34,7 @@ function SecurityTools() {
     if (password.length === 0 || poolSize === 0) {
       setEntropy(0);
       setStrengthLabel("None");
-      setStrengthColor("#64748b");
+      setStrengthColor("#6b7280");
       setCrackTime("Instant");
       return;
     }
@@ -48,15 +48,15 @@ function SecurityTools() {
       setCrackTime("< a few seconds");
     } else if (bits < 55) {
       setStrengthLabel("Moderate");
-      setStrengthColor("#f59e0b");
+      setStrengthColor("#eab308");
       setCrackTime("A few hours to days");
     } else if (bits < 75) {
       setStrengthLabel("Strong");
-      setStrengthColor("#10b981");
+      setStrengthColor("#00ff66");
       setCrackTime("Several decades");
     } else {
       setStrengthLabel("Very Strong (Military Grade)");
-      setStrengthColor("#38bdf8");
+      setStrengthColor("#39ff14");
       setCrackTime("Millions of years");
     }
   }, [password]);
@@ -117,15 +117,15 @@ function SecurityTools() {
       {/* Page Header */}
       <div style={{ marginBottom: "28px" }}>
         <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
-          <ShieldCheck size={14} color="#10b981" />
-          <span style={{ fontSize: "12px", color: "#10b981", fontFamily: "var(--font-mono)", fontWeight: 600 }}>
-            INTERACTIVE CRYPTO WORKBENCH
+          <ShieldCheck size={14} color="#00ff66" />
+          <span style={{ fontSize: "12px", color: "#00ff66", fontFamily: "var(--font-mono)", fontWeight: 700 }}>
+            INTERACTIVE CRYPTOGRAPHIC WORKBENCH
           </span>
         </div>
-        <h1 style={{ fontSize: "32px", color: "#f8fafc", fontWeight: 700, marginBottom: "8px" }}>
+        <h1 style={{ fontSize: "32px", color: "#ffffff", fontWeight: 800, marginBottom: "8px" }}>
           Cyber Security Laboratory
         </h1>
-        <p style={{ color: "#94a3b8", fontSize: "15px", maxWidth: "680px" }}>
+        <p style={{ color: "#86efac", fontSize: "15px", maxWidth: "680px" }}>
           Live browser-based cryptographic utilities using the native Web Cryptography API. Measure password bit entropy, generate one-way hash digests, and test encoding.
         </p>
       </div>
@@ -136,7 +136,7 @@ function SecurityTools() {
           display: "flex",
           gap: "10px",
           marginBottom: "28px",
-          borderBottom: "1px solid rgba(56, 189, 248, 0.15)",
+          borderBottom: "1px solid rgba(0, 255, 102, 0.2)",
           paddingBottom: "12px",
           flexWrap: "wrap",
         }}
@@ -147,14 +147,15 @@ function SecurityTools() {
             display: "flex",
             alignItems: "center",
             gap: "8px",
-            background: activeTab === "password" ? "rgba(16, 185, 129, 0.2)" : "transparent",
-            color: activeTab === "password" ? "#10b981" : "#94a3b8",
-            border: activeTab === "password" ? "1px solid #10b981" : "1px solid transparent",
-            padding: "8px 16px",
+            background: activeTab === "password" ? "rgba(0, 255, 102, 0.22)" : "transparent",
+            color: activeTab === "password" ? "#00ff66" : "#86efac",
+            border: activeTab === "password" ? "1px solid #00ff66" : "1px solid transparent",
+            boxShadow: activeTab === "password" ? "0 0 15px rgba(0, 255, 102, 0.3)" : "none",
+            padding: "9px 18px",
             borderRadius: "8px",
             cursor: "pointer",
-            fontSize: "14px",
-            fontWeight: 500,
+            fontSize: "13.5px",
+            fontWeight: 600,
             transition: "all 0.2s ease",
           }}
         >
@@ -168,14 +169,15 @@ function SecurityTools() {
             display: "flex",
             alignItems: "center",
             gap: "8px",
-            background: activeTab === "hash" ? "rgba(6, 182, 212, 0.2)" : "transparent",
-            color: activeTab === "hash" ? "#38bdf8" : "#94a3b8",
-            border: activeTab === "hash" ? "1px solid #06b6d4" : "1px solid transparent",
-            padding: "8px 16px",
+            background: activeTab === "hash" ? "rgba(0, 255, 102, 0.22)" : "transparent",
+            color: activeTab === "hash" ? "#00ff66" : "#86efac",
+            border: activeTab === "hash" ? "1px solid #00ff66" : "1px solid transparent",
+            boxShadow: activeTab === "hash" ? "0 0 15px rgba(0, 255, 102, 0.3)" : "none",
+            padding: "9px 18px",
             borderRadius: "8px",
             cursor: "pointer",
-            fontSize: "14px",
-            fontWeight: 500,
+            fontSize: "13.5px",
+            fontWeight: 600,
             transition: "all 0.2s ease",
           }}
         >
@@ -189,14 +191,15 @@ function SecurityTools() {
             display: "flex",
             alignItems: "center",
             gap: "8px",
-            background: activeTab === "base64" ? "rgba(168, 85, 247, 0.2)" : "transparent",
-            color: activeTab === "base64" ? "#c084fc" : "#94a3b8",
-            border: activeTab === "base64" ? "1px solid #a855f7" : "1px solid transparent",
-            padding: "8px 16px",
+            background: activeTab === "base64" ? "rgba(0, 255, 102, 0.22)" : "transparent",
+            color: activeTab === "base64" ? "#00ff66" : "#86efac",
+            border: activeTab === "base64" ? "1px solid #00ff66" : "1px solid transparent",
+            boxShadow: activeTab === "base64" ? "0 0 15px rgba(0, 255, 102, 0.3)" : "none",
+            padding: "9px 18px",
             borderRadius: "8px",
             cursor: "pointer",
-            fontSize: "14px",
-            fontWeight: 500,
+            fontSize: "13.5px",
+            fontWeight: 600,
             transition: "all 0.2s ease",
           }}
         >
@@ -207,34 +210,34 @@ function SecurityTools() {
 
       {/* --- TAB 1: PASSWORD ANALYZER --- */}
       {activeTab === "password" && (
-        <div className="cyber-card" style={{ padding: "32px" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+        <div className="cyber-card" style={{ padding: "34px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "22px", flexWrap: "wrap", gap: "12px" }}>
             <div>
-              <h2 style={{ fontSize: "20px", color: "#f8fafc", marginBottom: "4px" }}>
+              <h2 style={{ fontSize: "20px", color: "#ffffff", marginBottom: "4px" }}>
                 Shannon Bit Entropy & Strength Meter
               </h2>
-              <p style={{ fontSize: "14px", color: "#94a3b8" }}>
+              <p style={{ fontSize: "14px", color: "#86efac" }}>
                 Formula: $E = L \times \log_2(R)$ where $L$ is length and $R$ is character pool size.
               </p>
             </div>
             <button
               onClick={generateStrongPassword}
               className="btn-cyber-secondary"
-              style={{ fontSize: "13px", padding: "8px 14px" }}
+              style={{ fontSize: "13px", padding: "8px 16px" }}
             >
-              <Sparkles size={14} color="#10b981" />
+              <Sparkles size={15} color="#00ff66" />
               <span>Generate 18-char Key</span>
             </button>
           </div>
 
-          {/* Password Input with show/hide */}
-          <div style={{ position: "relative", marginBottom: "24px" }}>
+          {/* Password Input */}
+          <div style={{ position: "relative", marginBottom: "26px" }}>
             <label className="cyber-label">Test Password String</label>
             <div style={{ position: "relative" }}>
               <input
                 type={showPassword ? "text" : "password"}
                 className="cyber-input"
-                style={{ fontFamily: "var(--font-mono)", fontSize: "15px", paddingRight: "44px" }}
+                style={{ fontFamily: "var(--font-mono)", fontSize: "15px", paddingRight: "46px" }}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Type or paste any password to analyze..."
@@ -244,12 +247,12 @@ function SecurityTools() {
                 onClick={() => setShowPassword(!showPassword)}
                 style={{
                   position: "absolute",
-                  right: "12px",
+                  right: "14px",
                   top: "50%",
                   transform: "translateY(-50%)",
                   background: "transparent",
                   border: "none",
-                  color: "#94a3b8",
+                  color: "#00ff66",
                   cursor: "pointer",
                 }}
               >
@@ -263,34 +266,34 @@ function SecurityTools() {
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: "16px",
+              gap: "18px",
               marginBottom: "28px",
             }}
           >
-            <div style={{ background: "rgba(11, 15, 25, 0.8)", padding: "16px", borderRadius: "8px", border: "1px solid rgba(56, 189, 248, 0.15)" }}>
-              <span style={{ fontSize: "12px", color: "#64748b", fontFamily: "var(--font-mono)" }}>BIT ENTROPY</span>
-              <div style={{ fontSize: "28px", fontWeight: 700, color: strengthColor, marginTop: "4px" }}>
-                {entropy} <span style={{ fontSize: "14px", fontWeight: 400, color: "#94a3b8" }}>bits</span>
+            <div style={{ background: "rgba(3, 8, 4, 0.85)", padding: "18px", borderRadius: "8px", border: "1px solid rgba(0, 255, 102, 0.25)" }}>
+              <span style={{ fontSize: "12px", color: "#00ff66", fontFamily: "var(--font-mono)", fontWeight: 700 }}>BIT ENTROPY</span>
+              <div style={{ fontSize: "30px", fontWeight: 800, color: strengthColor, marginTop: "4px", textShadow: `0 0 10px ${strengthColor}` }}>
+                {entropy} <span style={{ fontSize: "14px", fontWeight: 400, color: "#86efac" }}>bits</span>
               </div>
             </div>
 
-            <div style={{ background: "rgba(11, 15, 25, 0.8)", padding: "16px", borderRadius: "8px", border: "1px solid rgba(56, 189, 248, 0.15)" }}>
-              <span style={{ fontSize: "12px", color: "#64748b", fontFamily: "var(--font-mono)" }}>CLASSIFICATION</span>
-              <div style={{ fontSize: "18px", fontWeight: 600, color: strengthColor, marginTop: "8px" }}>
+            <div style={{ background: "rgba(3, 8, 4, 0.85)", padding: "18px", borderRadius: "8px", border: "1px solid rgba(0, 255, 102, 0.25)" }}>
+              <span style={{ fontSize: "12px", color: "#00ff66", fontFamily: "var(--font-mono)", fontWeight: 700 }}>CLASSIFICATION</span>
+              <div style={{ fontSize: "19px", fontWeight: 700, color: strengthColor, marginTop: "10px" }}>
                 {strengthLabel}
               </div>
             </div>
 
-            <div style={{ background: "rgba(11, 15, 25, 0.8)", padding: "16px", borderRadius: "8px", border: "1px solid rgba(56, 189, 248, 0.15)" }}>
-              <span style={{ fontSize: "12px", color: "#64748b", fontFamily: "var(--font-mono)" }}>CRACK TIME (100B/SEC)</span>
-              <div style={{ fontSize: "16px", fontWeight: 600, color: "#38bdf8", marginTop: "10px" }}>
+            <div style={{ background: "rgba(3, 8, 4, 0.85)", padding: "18px", borderRadius: "8px", border: "1px solid rgba(0, 255, 102, 0.25)" }}>
+              <span style={{ fontSize: "12px", color: "#00ff66", fontFamily: "var(--font-mono)", fontWeight: 700 }}>CRACK TIME (100B/SEC)</span>
+              <div style={{ fontSize: "17px", fontWeight: 700, color: "#39ff14", marginTop: "10px" }}>
                 {crackTime}
               </div>
             </div>
           </div>
 
           {/* Checklist */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "10px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "12px" }}>
             {[
               { label: "12+ Characters", pass: password.length >= 12 },
               { label: "Uppercase & Lowercase", pass: /[a-z]/.test(password) && /[A-Z]/.test(password) },
@@ -304,14 +307,15 @@ function SecurityTools() {
                   alignItems: "center",
                   gap: "8px",
                   fontSize: "13px",
-                  color: check.pass ? "#34d399" : "#64748b",
-                  background: check.pass ? "rgba(16, 185, 129, 0.08)" : "rgba(15, 23, 42, 0.4)",
-                  padding: "8px 12px",
+                  fontWeight: 600,
+                  color: check.pass ? "#00ff66" : "#4ade80",
+                  background: check.pass ? "rgba(0, 255, 102, 0.12)" : "rgba(3, 8, 4, 0.5)",
+                  padding: "9px 14px",
                   borderRadius: "6px",
-                  border: check.pass ? "1px solid rgba(16, 185, 129, 0.2)" : "1px solid rgba(255, 255, 255, 0.05)",
+                  border: check.pass ? "1px solid #00ff66" : "1px solid rgba(0, 255, 102, 0.15)",
                 }}
               >
-                {check.pass ? <Check size={14} color="#10b981" /> : <span style={{ width: "14px" }}>•</span>}
+                {check.pass ? <Check size={15} color="#00ff66" /> : <span style={{ width: "15px", color: "#4ade80" }}>•</span>}
                 <span>{check.label}</span>
               </div>
             ))}
@@ -321,30 +325,32 @@ function SecurityTools() {
 
       {/* --- TAB 2: HASH GENERATOR --- */}
       {activeTab === "hash" && (
-        <div className="cyber-card" style={{ padding: "32px" }}>
-          <div style={{ marginBottom: "20px" }}>
-            <h2 style={{ fontSize: "20px", color: "#f8fafc", marginBottom: "4px" }}>
+        <div className="cyber-card" style={{ padding: "34px" }}>
+          <div style={{ marginBottom: "22px" }}>
+            <h2 style={{ fontSize: "20px", color: "#ffffff", marginBottom: "4px" }}>
               Native Web Cryptography Hash Generator
             </h2>
-            <p style={{ fontSize: "14px", color: "#94a3b8" }}>
-              Compute deterministic one-way cryptographic digests directly inside your browser without sending data to any remote server.
+            <p style={{ fontSize: "14px", color: "#86efac" }}>
+              Compute deterministic one-way cryptographic digests directly inside your browser without sending data over any network.
             </p>
           </div>
 
-          <div style={{ display: "flex", gap: "10px", marginBottom: "18px" }}>
+          <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
             {["SHA-256", "SHA-384", "SHA-512"].map((alg) => (
               <button
                 key={alg}
                 onClick={() => setHashAlgorithm(alg)}
                 style={{
-                  background: hashAlgorithm === alg ? "rgba(6, 182, 212, 0.2)" : "rgba(11, 15, 25, 0.6)",
-                  color: hashAlgorithm === alg ? "#38bdf8" : "#94a3b8",
-                  border: hashAlgorithm === alg ? "1px solid #06b6d4" : "1px solid rgba(56, 189, 248, 0.15)",
-                  padding: "6px 14px",
+                  background: hashAlgorithm === alg ? "rgba(0, 255, 102, 0.25)" : "rgba(3, 8, 4, 0.7)",
+                  color: hashAlgorithm === alg ? "#00ff66" : "#86efac",
+                  border: hashAlgorithm === alg ? "1px solid #00ff66" : "1px solid rgba(0, 255, 102, 0.25)",
+                  boxShadow: hashAlgorithm === alg ? "0 0 10px rgba(0, 255, 102, 0.3)" : "none",
+                  padding: "7px 16px",
                   borderRadius: "6px",
                   fontSize: "13px",
                   cursor: "pointer",
                   fontFamily: "var(--font-mono)",
+                  fontWeight: 600,
                 }}
               >
                 {alg}
@@ -352,7 +358,7 @@ function SecurityTools() {
             ))}
           </div>
 
-          <div style={{ marginBottom: "20px" }}>
+          <div style={{ marginBottom: "22px" }}>
             <label className="cyber-label">Plaintext Input Payload</label>
             <textarea
               className="cyber-input"
@@ -365,7 +371,7 @@ function SecurityTools() {
           </div>
 
           <div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "7px" }}>
               <label className="cyber-label">{hashAlgorithm} Output Digest (Hex)</label>
               <button
                 onClick={() => copyToClipboard(sha256Hash)}
@@ -373,12 +379,13 @@ function SecurityTools() {
                   display: "flex",
                   alignItems: "center",
                   gap: "6px",
-                  background: copiedHash ? "rgba(16, 185, 129, 0.2)" : "transparent",
-                  color: copiedHash ? "#34d399" : "#38bdf8",
+                  background: copiedHash ? "rgba(0, 255, 102, 0.25)" : "transparent",
+                  color: copiedHash ? "#39ff14" : "#00ff66",
                   border: "none",
-                  fontSize: "12px",
+                  fontSize: "12.5px",
                   cursor: "pointer",
                   fontFamily: "var(--font-mono)",
+                  fontWeight: 600,
                 }}
               >
                 {copiedHash ? <Check size={14} /> : <Copy size={14} />}
@@ -388,13 +395,14 @@ function SecurityTools() {
 
             <div
               style={{
-                background: "rgba(11, 15, 25, 0.95)",
-                border: "1px solid rgba(56, 189, 248, 0.25)",
+                background: "rgba(3, 8, 4, 0.98)",
+                border: "1px solid #00ff66",
+                boxShadow: "0 0 15px rgba(0, 255, 102, 0.2)",
                 borderRadius: "8px",
-                padding: "16px",
+                padding: "18px",
                 fontFamily: "var(--font-mono)",
-                fontSize: "13.5px",
-                color: "#10b981",
+                fontSize: "14px",
+                color: "#00ff66",
                 wordBreak: "break-all",
                 lineHeight: 1.6,
               }}
@@ -407,14 +415,14 @@ function SecurityTools() {
 
       {/* --- TAB 3: BASE64 ENCODER / DECODER --- */}
       {activeTab === "base64" && (
-        <div className="cyber-card" style={{ padding: "32px" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+        <div className="cyber-card" style={{ padding: "34px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "22px", flexWrap: "wrap", gap: "12px" }}>
             <div>
-              <h2 style={{ fontSize: "20px", color: "#f8fafc", marginBottom: "4px" }}>
+              <h2 style={{ fontSize: "20px", color: "#ffffff", marginBottom: "4px" }}>
                 Base64 Binary-to-Text Transformer
               </h2>
-              <p style={{ fontSize: "14px", color: "#94a3b8" }}>
-                Quick encoding and decoding for HTTP Authorization tokens, JSON Web Tokens (JWT), and payloads.
+              <p style={{ fontSize: "14px", color: "#86efac" }}>
+                Quick encoding and decoding for HTTP Authorization tokens, JSON Web Tokens (JWT), and cyber payloads.
               </p>
             </div>
 
@@ -422,13 +430,15 @@ function SecurityTools() {
               <button
                 onClick={() => setB64Mode("encode")}
                 style={{
-                  background: b64Mode === "encode" ? "rgba(168, 85, 247, 0.2)" : "rgba(11, 15, 25, 0.6)",
-                  color: b64Mode === "encode" ? "#c084fc" : "#94a3b8",
-                  border: b64Mode === "encode" ? "1px solid #a855f7" : "1px solid rgba(56, 189, 248, 0.15)",
-                  padding: "6px 14px",
+                  background: b64Mode === "encode" ? "rgba(0, 255, 102, 0.25)" : "rgba(3, 8, 4, 0.7)",
+                  color: b64Mode === "encode" ? "#00ff66" : "#86efac",
+                  border: b64Mode === "encode" ? "1px solid #00ff66" : "1px solid rgba(0, 255, 102, 0.25)",
+                  boxShadow: b64Mode === "encode" ? "0 0 10px rgba(0, 255, 102, 0.3)" : "none",
+                  padding: "7px 16px",
                   borderRadius: "6px",
                   fontSize: "13px",
                   cursor: "pointer",
+                  fontWeight: 600,
                 }}
               >
                 Encode
@@ -436,13 +446,15 @@ function SecurityTools() {
               <button
                 onClick={() => setB64Mode("decode")}
                 style={{
-                  background: b64Mode === "decode" ? "rgba(168, 85, 247, 0.2)" : "rgba(11, 15, 25, 0.6)",
-                  color: b64Mode === "decode" ? "#c084fc" : "#94a3b8",
-                  border: b64Mode === "decode" ? "1px solid #a855f7" : "1px solid rgba(56, 189, 248, 0.15)",
-                  padding: "6px 14px",
+                  background: b64Mode === "decode" ? "rgba(0, 255, 102, 0.25)" : "rgba(3, 8, 4, 0.7)",
+                  color: b64Mode === "decode" ? "#00ff66" : "#86efac",
+                  border: b64Mode === "decode" ? "1px solid #00ff66" : "1px solid rgba(0, 255, 102, 0.25)",
+                  boxShadow: b64Mode === "decode" ? "0 0 10px rgba(0, 255, 102, 0.3)" : "none",
+                  padding: "7px 16px",
                   borderRadius: "6px",
                   fontSize: "13px",
                   cursor: "pointer",
+                  fontWeight: 600,
                 }}
               >
                 Decode
@@ -450,7 +462,7 @@ function SecurityTools() {
             </div>
           </div>
 
-          <div style={{ marginBottom: "20px" }}>
+          <div style={{ marginBottom: "22px" }}>
             <label className="cyber-label">Input Data</label>
             <textarea
               className="cyber-input"
@@ -463,7 +475,7 @@ function SecurityTools() {
           </div>
 
           <div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "7px" }}>
               <label className="cyber-label">Transformed Output</label>
               <button
                 onClick={() => copyToClipboard(b64Output)}
@@ -471,12 +483,13 @@ function SecurityTools() {
                   display: "flex",
                   alignItems: "center",
                   gap: "6px",
-                  background: copiedHash ? "rgba(168, 85, 247, 0.2)" : "transparent",
-                  color: copiedHash ? "#c084fc" : "#38bdf8",
+                  background: copiedHash ? "rgba(0, 255, 102, 0.25)" : "transparent",
+                  color: copiedHash ? "#39ff14" : "#00ff66",
                   border: "none",
-                  fontSize: "12px",
+                  fontSize: "12.5px",
                   cursor: "pointer",
                   fontFamily: "var(--font-mono)",
+                  fontWeight: 600,
                 }}
               >
                 {copiedHash ? <Check size={14} /> : <Copy size={14} />}
@@ -486,13 +499,14 @@ function SecurityTools() {
 
             <div
               style={{
-                background: "rgba(11, 15, 25, 0.95)",
-                border: "1px solid rgba(168, 85, 247, 0.25)",
+                background: "rgba(3, 8, 4, 0.98)",
+                border: "1px solid #00ff66",
+                boxShadow: "0 0 15px rgba(0, 255, 102, 0.2)",
                 borderRadius: "8px",
-                padding: "16px",
+                padding: "18px",
                 fontFamily: "var(--font-mono)",
-                fontSize: "13.5px",
-                color: "#c084fc",
+                fontSize: "14px",
+                color: "#00ff66",
                 wordBreak: "break-all",
                 lineHeight: 1.6,
               }}
@@ -507,4 +521,3 @@ function SecurityTools() {
 }
 
 export default SecurityTools;
-

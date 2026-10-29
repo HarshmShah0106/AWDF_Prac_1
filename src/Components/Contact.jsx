@@ -15,7 +15,7 @@ function Contact() {
     subject: "",
     message: "",
   });
-  const [status, setStatus] = useState("idle"); // idle, transmitting, success
+  const [status, setStatus] = useState("idle");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,16 +34,16 @@ function Contact() {
       {/* Page Header */}
       <div style={{ marginBottom: "28px" }}>
         <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
-          <Mail size={14} color="#10b981" />
-          <span style={{ fontSize: "12px", color: "#10b981", fontFamily: "var(--font-mono)", fontWeight: 600 }}>
-            COMMUNICATION PROTOCOL // CONTACT
+          <Mail size={14} color="#00ff66" />
+          <span style={{ fontSize: "12px", color: "#00ff66", fontFamily: "var(--font-mono)", fontWeight: 700 }}>
+            COMMUNICATION PROTOCOL // DISPATCH
           </span>
         </div>
-        <h1 style={{ fontSize: "32px", color: "#f8fafc", fontWeight: 700, marginBottom: "8px" }}>
+        <h1 style={{ fontSize: "32px", color: "#ffffff", fontWeight: 800, marginBottom: "8px" }}>
           Initialize Secure Connection
         </h1>
-        <p style={{ color: "#94a3b8", fontSize: "15px", maxWidth: "680px" }}>
-          Reach out for cybersecurity discussions, technical collaborations, code audits, or academic inquiries.
+        <p style={{ color: "#86efac", fontSize: "15px", maxWidth: "680px" }}>
+          Reach out for cybersecurity discussions, technical collaborations, vulnerability research, or development inquiries.
         </p>
       </div>
 
@@ -55,39 +55,40 @@ function Contact() {
         }}
       >
         {/* Contact Form */}
-        <div className="cyber-card" style={{ padding: "32px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
-            <Lock size={18} color="#10b981" />
-            <h2 style={{ fontSize: "18px", color: "#f8fafc" }}>Transmit Encrypted Dispatch</h2>
+        <div className="cyber-card" style={{ padding: "34px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "22px" }}>
+            <Lock size={19} color="#00ff66" />
+            <h2 style={{ fontSize: "19px", color: "#ffffff", fontWeight: 700 }}>Transmit Encrypted Dispatch</h2>
           </div>
 
           {status === "success" && (
             <div
               style={{
-                background: "rgba(16, 185, 129, 0.15)",
-                border: "1px solid #10b981",
+                background: "rgba(0, 255, 102, 0.15)",
+                border: "1px solid #00ff66",
+                boxShadow: "0 0 20px rgba(0, 255, 102, 0.3)",
                 borderRadius: "8px",
                 padding: "16px",
                 marginBottom: "20px",
                 display: "flex",
                 alignItems: "center",
                 gap: "12px",
-                color: "#34d399",
+                color: "#39ff14",
                 fontSize: "14px",
               }}
             >
               <CheckCircle2 size={20} />
               <div>
                 <strong>Payload Transmitted Successfully!</strong>
-                <div style={{ fontSize: "12px", color: "#a7f3d0" }}>
-                  Thank you for reaching out. Harsh will review and respond shortly.
+                <div style={{ fontSize: "12.5px", color: "#dcfce7" }}>
+                  Thank you for reaching out. Harsh will review and respond promptly.
                 </div>
               </div>
             </div>
           )}
 
           <form onSubmit={handleSubmit}>
-            <div style={{ marginBottom: "16px" }}>
+            <div style={{ marginBottom: "18px" }}>
               <label className="cyber-label">Your Name</label>
               <input
                 type="text"
@@ -99,7 +100,7 @@ function Contact() {
               />
             </div>
 
-            <div style={{ marginBottom: "16px" }}>
+            <div style={{ marginBottom: "18px" }}>
               <label className="cyber-label">Email Address</label>
               <input
                 type="email"
@@ -111,24 +112,24 @@ function Contact() {
               />
             </div>
 
-            <div style={{ marginBottom: "16px" }}>
+            <div style={{ marginBottom: "18px" }}>
               <label className="cyber-label">Subject / Topic</label>
               <input
                 type="text"
                 className="cyber-input"
-                placeholder="e.g. Project Inquiry / Security Collaboration"
+                placeholder="e.g. Security Audit / Collaboration Request"
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
               />
             </div>
 
-            <div style={{ marginBottom: "20px" }}>
+            <div style={{ marginBottom: "24px" }}>
               <label className="cyber-label">Message Payload</label>
               <textarea
                 rows={4}
                 required
                 className="cyber-input"
-                placeholder="Compose your message..."
+                placeholder="Compose your dispatch message..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 style={{ resize: "vertical" }}
@@ -139,7 +140,7 @@ function Contact() {
               type="submit"
               disabled={status === "transmitting"}
               className="btn-cyber-primary"
-              style={{ width: "100%", padding: "12px" }}
+              style={{ width: "100%", padding: "13px" }}
             >
               {status === "transmitting" ? (
                 <span>Transmitting Payload...</span>
@@ -156,58 +157,62 @@ function Contact() {
         {/* Contact Info & Network Nodes */}
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
           {/* Node 1 */}
-          <div className="cyber-card" style={{ padding: "24px" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" }}>
+          <div className="cyber-card" style={{ padding: "26px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "12px" }}>
               <div
                 style={{
-                  width: "40px",
-                  height: "40px",
+                  width: "42px",
+                  height: "42px",
                   borderRadius: "8px",
-                  background: "rgba(16, 185, 129, 0.15)",
+                  background: "rgba(0, 255, 102, 0.15)",
+                  border: "1px solid #00ff66",
+                  boxShadow: "0 0 12px rgba(0, 255, 102, 0.25)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "#10b981",
+                  color: "#00ff66",
                 }}
               >
                 <Mail size={20} />
               </div>
               <div>
-                <span style={{ fontSize: "12px", color: "#64748b", fontFamily: "var(--font-mono)" }}>
-                  ELECTRONIC MAIL
+                <span style={{ fontSize: "11.5px", color: "#00ff66", fontFamily: "var(--font-mono)", fontWeight: 700 }}>
+                  ELECTRONIC DISPATCH
                 </span>
-                <div style={{ fontSize: "15px", fontWeight: 600, color: "#f8fafc" }}>
+                <div style={{ fontSize: "15.5px", fontWeight: 700, color: "#ffffff" }}>
                   harsh@gmail.com
                 </div>
               </div>
             </div>
-            <p style={{ fontSize: "13px", color: "#94a3b8" }}>
-              Direct line for academic communications, project inquiries, and collaborative research.
+            <p style={{ fontSize: "13px", color: "#86efac" }}>
+              Direct line for security advisories, vulnerability inquiries, and engineering collaborations.
             </p>
           </div>
 
           {/* Node 2 */}
-          <div className="cyber-card" style={{ padding: "24px" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" }}>
+          <div className="cyber-card" style={{ padding: "26px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "12px" }}>
               <div
                 style={{
-                  width: "40px",
-                  height: "40px",
+                  width: "42px",
+                  height: "42px",
                   borderRadius: "8px",
-                  background: "rgba(6, 182, 212, 0.15)",
+                  background: "rgba(0, 255, 102, 0.15)",
+                  border: "1px solid #00ff66",
+                  boxShadow: "0 0 12px rgba(0, 255, 102, 0.25)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "#06b6d4",
+                  color: "#00ff66",
                 }}
               >
                 <GithubIcon size={20} />
               </div>
               <div>
-                <span style={{ fontSize: "12px", color: "#64748b", fontFamily: "var(--font-mono)" }}>
-                  PUBLIC SOURCE NODE
+                <span style={{ fontSize: "11.5px", color: "#00ff66", fontFamily: "var(--font-mono)", fontWeight: 700 }}>
+                  PUBLIC SOURCE CONTROL
                 </span>
-                <div style={{ fontSize: "15px", fontWeight: 600, color: "#38bdf8" }}>
+                <div style={{ fontSize: "15.5px", fontWeight: 700, color: "#00ff66" }}>
                   @HarshmShah0106
                 </div>
               </div>
@@ -221,43 +226,45 @@ function Contact() {
                 alignItems: "center",
                 gap: "6px",
                 fontSize: "13px",
-                color: "#38bdf8",
+                color: "#00ff66",
                 textDecoration: "none",
-                fontWeight: 500,
+                fontWeight: 600,
               }}
             >
-              <span>Explore GitHub Repositories →</span>
+              <span>Explore Public Repositories →</span>
             </a>
           </div>
 
           {/* Node 3 */}
-          <div className="cyber-card" style={{ padding: "24px" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" }}>
+          <div className="cyber-card" style={{ padding: "26px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "12px" }}>
               <div
                 style={{
-                  width: "40px",
-                  height: "40px",
+                  width: "42px",
+                  height: "42px",
                   borderRadius: "8px",
-                  background: "rgba(56, 189, 248, 0.15)",
+                  background: "rgba(0, 255, 102, 0.15)",
+                  border: "1px solid #00ff66",
+                  boxShadow: "0 0 12px rgba(0, 255, 102, 0.25)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "#38bdf8",
+                  color: "#00ff66",
                 }}
               >
                 <MapPin size={20} />
               </div>
               <div>
-                <span style={{ fontSize: "12px", color: "#64748b", fontFamily: "var(--font-mono)" }}>
-                  ACADEMIC INSTITUTION
+                <span style={{ fontSize: "11.5px", color: "#00ff66", fontFamily: "var(--font-mono)", fontWeight: 700 }}>
+                  ACADEMIC SPECIALIZATION
                 </span>
-                <div style={{ fontSize: "15px", fontWeight: 600, color: "#f8fafc" }}>
-                  CSPIT, Charusat University
+                <div style={{ fontSize: "15.5px", fontWeight: 700, color: "#ffffff" }}>
+                  B.Tech in Information Technology
                 </div>
               </div>
             </div>
-            <p style={{ fontSize: "13px", color: "#94a3b8" }}>
-              B.Tech in Information Technology • Changa, Anand, Gujarat, India.
+            <p style={{ fontSize: "13px", color: "#86efac" }}>
+              Specializing in Defensive Web Architectures, Penetration Testing, and Applied Cryptography.
             </p>
           </div>
         </div>

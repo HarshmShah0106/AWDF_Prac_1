@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FolderGit2, Search, ExternalLink, Star, GitFork, Calendar, Code, AlertTriangle, RefreshCw } from "lucide-react";
+import { FolderGit2, Search, ExternalLink, Star, GitFork, AlertTriangle, RefreshCw } from "lucide-react";
 import Spinner from "./Spinner";
 import ErrorMessage from "./ErrorMessage";
 
@@ -39,10 +39,8 @@ function Projects() {
     fetchRepositories();
   }, []);
 
-  // Extract unique languages
   const languages = ["All", ...new Set(repos.map((r) => r.language).filter(Boolean))];
 
-  // Filter repos based on search and language
   const filteredRepos = repos.filter((repo) => {
     const matchesSearch =
       repo.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -66,10 +64,8 @@ function Projects() {
         return "#563d7c";
       case "Python":
         return "#3572A5";
-      case "C++":
-        return "#f34b7d";
       default:
-        return "#10b981";
+        return "#00ff66";
     }
   };
 
@@ -78,17 +74,18 @@ function Projects() {
       {/* Section Header */}
       <div style={{ marginBottom: "28px" }}>
         <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
-          <FolderGit2 size={14} color="#10b981" />
-          <span style={{ fontSize: "12px", color: "#10b981", fontFamily: "var(--font-mono)", fontWeight: 600 }}>
-            GITHUB INTELLIGENCE // CODEBASE
+          <FolderGit2 size={14} color="#00ff66" />
+          <span style={{ fontSize: "12px", color: "#00ff66", fontFamily: "var(--font-mono)", fontWeight: 700 }}>
+            GITHUB INTELLIGENCE // CODE REPOSITORY
           </span>
         </div>
-        <h1 style={{ fontSize: "32px", color: "#f8fafc", fontWeight: 700, marginBottom: "8px" }}>
-          Security & Engineering Repositories
+        <h1 style={{ fontSize: "32px", color: "#ffffff", fontWeight: 800, marginBottom: "8px" }}>
+          Security & Engineering Codebase
         </h1>
-        <p style={{ color: "#94a3b8", fontSize: "15px", maxWidth: "680px" }}>
-          Real-time synchronized repositories from GitHub user{" "}
-          <strong style={{ color: "#38bdf8" }}>@HarshmShah0106</strong>. Explore full-stack implementations, containerized stacks, and security experiments.
+        <p style={{ color: "#86efac", fontSize: "15px", maxWidth: "680px" }}>
+          Live telemetry synchronized from GitHub user{" "}
+          <strong style={{ color: "#00ff66", textShadow: "0 0 10px rgba(0,255,102,0.4)" }}>@HarshmShah0106</strong>.
+          Explore full-stack implementations, containerized stacks, and security experiments.
         </p>
       </div>
 
@@ -109,35 +106,37 @@ function Projects() {
         <div style={{ position: "relative", minWidth: "260px", flex: "1 1 300px" }}>
           <Search
             size={16}
-            color="#64748b"
+            color="#00ff66"
             style={{ position: "absolute", left: "14px", top: "50%", transform: "translateY(-50%)" }}
           />
           <input
             type="text"
             className="cyber-input"
-            placeholder="Search repositories by title or keyword..."
+            placeholder="Filter codebase by name or keyword..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            style={{ paddingLeft: "40px" }}
+            style={{ paddingLeft: "42px" }}
           />
         </div>
 
         {/* Language Filter Pills */}
         <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", alignItems: "center" }}>
-          <span style={{ fontSize: "13px", color: "#64748b", fontFamily: "var(--font-mono)" }}>Lang:</span>
+          <span style={{ fontSize: "12.5px", color: "#00ff66", fontFamily: "var(--font-mono)", fontWeight: 600 }}>Lang:</span>
           {languages.slice(0, 5).map((lang) => (
             <button
               key={lang}
               onClick={() => setSelectedLanguage(lang)}
               style={{
-                background: selectedLanguage === lang ? "rgba(6, 182, 212, 0.2)" : "rgba(11, 15, 25, 0.6)",
-                color: selectedLanguage === lang ? "#38bdf8" : "#94a3b8",
-                border: selectedLanguage === lang ? "1px solid #06b6d4" : "1px solid rgba(56, 189, 248, 0.15)",
-                padding: "6px 12px",
+                background: selectedLanguage === lang ? "rgba(0, 255, 102, 0.25)" : "rgba(3, 8, 4, 0.7)",
+                color: selectedLanguage === lang ? "#00ff66" : "#86efac",
+                border: selectedLanguage === lang ? "1px solid #00ff66" : "1px solid rgba(0, 255, 102, 0.2)",
+                boxShadow: selectedLanguage === lang ? "0 0 10px rgba(0, 255, 102, 0.3)" : "none",
+                padding: "6px 13px",
                 borderRadius: "6px",
                 fontSize: "12px",
                 cursor: "pointer",
                 fontFamily: "var(--font-mono)",
+                fontWeight: 600,
                 transition: "all 0.2s ease",
               }}
             >
@@ -150,9 +149,9 @@ function Projects() {
             title="Refresh Repositories"
             style={{
               background: "transparent",
-              border: "1px solid rgba(56, 189, 248, 0.2)",
-              color: "#94a3b8",
-              padding: "7px 10px",
+              border: "1px solid rgba(0, 255, 102, 0.3)",
+              color: "#00ff66",
+              padding: "7px 11px",
               borderRadius: "6px",
               cursor: "pointer",
               display: "flex",
@@ -179,11 +178,11 @@ function Projects() {
               style={{
                 padding: "48px 24px",
                 textAlign: "center",
-                color: "#94a3b8",
+                color: "#86efac",
               }}
             >
-              <AlertTriangle size={36} color="#f59e0b" style={{ margin: "0 auto 12px" }} />
-              <h3 style={{ color: "#f8fafc", marginBottom: "8px" }}>No Repositories Match Your Filter</h3>
+              <AlertTriangle size={36} color="#eab308" style={{ margin: "0 auto 12px" }} />
+              <h3 style={{ color: "#ffffff", marginBottom: "8px" }}>No Repositories Match Filter</h3>
               <p style={{ fontSize: "14px" }}>
                 Try searching for different keywords or select "All" languages.
               </p>
@@ -193,7 +192,7 @@ function Projects() {
               style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-                gap: "20px",
+                gap: "22px",
               }}
             >
               {filteredRepos.map((repo) => (
@@ -201,7 +200,7 @@ function Projects() {
                   key={repo.id}
                   className="cyber-card"
                   style={{
-                    padding: "24px",
+                    padding: "26px",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
@@ -220,9 +219,9 @@ function Projects() {
                     >
                       <h3
                         style={{
-                          fontSize: "17px",
-                          fontWeight: 600,
-                          color: "#f8fafc",
+                          fontSize: "17.5px",
+                          fontWeight: 700,
+                          color: "#ffffff",
                           wordBreak: "break-word",
                         }}
                       >
@@ -231,12 +230,13 @@ function Projects() {
                       <span
                         style={{
                           fontSize: "11px",
-                          color: "#10b981",
-                          background: "rgba(16, 185, 129, 0.1)",
-                          border: "1px solid rgba(16, 185, 129, 0.25)",
+                          color: "#00ff66",
+                          background: "rgba(0, 255, 102, 0.12)",
+                          border: "1px solid rgba(0, 255, 102, 0.35)",
                           padding: "2px 8px",
                           borderRadius: "4px",
                           fontFamily: "var(--font-mono)",
+                          fontWeight: 600,
                           whiteSpace: "nowrap",
                         }}
                       >
@@ -248,10 +248,10 @@ function Projects() {
                     <p
                       style={{
                         fontSize: "13.5px",
-                        color: "#94a3b8",
-                        lineHeight: 1.55,
+                        color: "#86efac",
+                        lineHeight: 1.6,
                         marginBottom: "18px",
-                        minHeight: "42px",
+                        minHeight: "44px",
                       }}
                     >
                       {repo.description || "Academic web framework repository and technical laboratory work."}
@@ -259,15 +259,15 @@ function Projects() {
                   </div>
 
                   <div>
-                    {/* Meta stats: Language, Stars, Forks, Date */}
+                    {/* Meta stats */}
                     <div
                       style={{
                         display: "flex",
                         alignItems: "center",
                         gap: "14px",
                         fontSize: "12px",
-                        color: "#64748b",
-                        borderTop: "1px solid rgba(255, 255, 255, 0.06)",
+                        color: "#4ade80",
+                        borderTop: "1px solid rgba(0, 255, 102, 0.15)",
                         paddingTop: "14px",
                         marginBottom: "16px",
                         fontFamily: "var(--font-mono)",
@@ -283,17 +283,17 @@ function Projects() {
                               backgroundColor: getLanguageColor(repo.language),
                             }}
                           ></span>
-                          <span style={{ color: "#cbd5e1" }}>{repo.language}</span>
+                          <span style={{ color: "#dcfce7", fontWeight: 600 }}>{repo.language}</span>
                         </div>
                       )}
 
                       <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-                        <Star size={13} color="#f59e0b" />
+                        <Star size={13} color="#00ff66" />
                         <span>{repo.stargazers_count}</span>
                       </div>
 
                       <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-                        <GitFork size={13} color="#06b6d4" />
+                        <GitFork size={13} color="#00ff66" />
                         <span>{repo.forks_count}</span>
                       </div>
                     </div>
@@ -307,23 +307,25 @@ function Projects() {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "space-between",
-                        padding: "8px 14px",
-                        background: "rgba(11, 15, 25, 0.8)",
-                        border: "1px solid rgba(56, 189, 248, 0.2)",
+                        padding: "9px 15px",
+                        background: "rgba(0, 255, 102, 0.1)",
+                        border: "1px solid rgba(0, 255, 102, 0.35)",
                         borderRadius: "6px",
-                        color: "#38bdf8",
+                        color: "#00ff66",
                         textDecoration: "none",
                         fontSize: "13px",
-                        fontWeight: 500,
+                        fontWeight: 600,
                         transition: "all 0.2s ease",
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = "#38bdf8";
-                        e.currentTarget.style.background = "rgba(56, 189, 248, 0.1)";
+                        e.currentTarget.style.borderColor = "#00ff66";
+                        e.currentTarget.style.background = "rgba(0, 255, 102, 0.22)";
+                        e.currentTarget.style.boxShadow = "0 0 15px rgba(0, 255, 102, 0.35)";
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = "rgba(56, 189, 248, 0.2)";
-                        e.currentTarget.style.background = "rgba(11, 15, 25, 0.8)";
+                        e.currentTarget.style.borderColor = "rgba(0, 255, 102, 0.35)";
+                        e.currentTarget.style.background = "rgba(0, 255, 102, 0.1)";
+                        e.currentTarget.style.boxShadow = "none";
                       }}
                     >
                       <span>Inspect Codebase</span>
