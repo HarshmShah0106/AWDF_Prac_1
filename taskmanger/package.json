@@ -1,0 +1,34 @@
+{
+  "name": "practical-6-fullstack-integration",
+  "version": "1.0.0",
+  "description": "ITUE301 Practical 6: Full Stack Integration React + Node + MongoDB",
+  "scripts": {
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "lint": "npm run lint --prefix backend",
+    "test": "npm test --prefix backend",
+    "server": "npm run start --prefix backend",
+    "server:dev": "npm run dev --prefix backend",
+    "client": "npm run dev --prefix frontend",
+    "db:inspect": "node backend/inspect-db.js",
+    "docker:build": "docker compose build",
+    "docker:up": "docker compose up --build",
+    "docker:down": "docker compose down",
+    "docker:down:v": "docker compose down -v",
+    "docker:ps": "docker compose ps",
+    "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"blue,magenta\" \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.4"
+  },
+  "keywords": [
+    "react",
+    "express",
+    "mongodb",
+    "full-stack",
+    "itue301",
+    "cors",
+    "crud"
+  ],
+  "author": "",
+  "license": "ISC"
+}
