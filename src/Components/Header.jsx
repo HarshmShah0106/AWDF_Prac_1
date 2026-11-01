@@ -1,165 +1,291 @@
 import { Link } from "react-router-dom";
-import { Terminal, Shield, ArrowRight, Wrench, Lock, Cpu, Server, CheckCircle2 } from "lucide-react";
+import { useState, useEffect } from "react";
+import {
+  ArrowRight, Shield, Server, Lock, Cpu,
+  Download, ExternalLink, ChevronDown
+} from "lucide-react";
+
+const stats = [
+  { value: "OWASP", label: "Top 10 Auditing" },
+  { value: "Docker", label: "Multi-container" },
+  { value: "React 19", label: "Full-stack" },
+  { value: "CEH v13", label: "In progress" },
+];
+
+const tech = [
+  "React", "Node.js", "Express", "MongoDB", "Docker", "Penetration Testing",
+  "JWT Auth", "Bcrypt", "Wireshark", "Linux", "Git", "TypeScript",
+];
+
+function TypeWriter({ strings, speed = 65, pause = 1800 }) {
+  const [displayed, setDisplayed] = useState("");
+  const [strIdx, setStrIdx] = useState(0);
+  const [charIdx, setCharIdx] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = strings[strIdx];
+    let timeout;
+
+    if (!deleting && charIdx < current.length) {
+      timeout = setTimeout(() => setCharIdx(c => c + 1), speed);
+    } else if (!deleting && charIdx === current.length) {
+      timeout = setTimeout(() => setDeleting(true), pause);
+    } else if (deleting && charIdx > 0) {
+      timeout = setTimeout(() => setCharIdx(c => c - 1), speed / 2);
+    } else if (deleting && charIdx === 0) {
+      setDeleting(false);
+      setStrIdx(i => (i + 1) % strings.length);
+    }
+
+    setDisplayed(current.slice(0, charIdx));
+    return () => clearTimeout(timeout);
+  }, [charIdx, deleting, strIdx, strings, speed, pause]);
+
+  return (
+    <span>
+      {displayed}
+      <span className="cursor-blink">|</span>
+    </span>
+  );
+}
 
 function Header({ name }) {
   return (
-    <section style={{ padding: "40px 0 24px" }}>
-      {/* Top Cyber Badges */}
-      <div style={{ display: "inline-flex", alignItems: "center", gap: "10px", marginBottom: "18px", flexWrap: "wrap" }}>
-        <span className="cyber-badge">
-          <Shield size={13} />
-          OFFENSIVE & DEFENSIVE WEB SECURITY
+    <section style={{ padding: "56px 0 48px" }}>
+      {/* Top badge row */}
+      <div className="anim-up" style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "32px" }}>
+        <span className="badge badge-indigo">
+          <Shield size={11} /> Security Researcher
         </span>
-        <span className="cyber-badge" style={{ background: "rgba(0, 255, 102, 0.08)", borderColor: "rgba(0, 255, 102, 0.2)" }}>
-          <CheckCircle2 size={13} />
-          B.TECH IT • APPLIED CYBERSECURITY
+        <span className="badge badge-violet">
+          <Server size={11} /> Full-Stack Engineer
+        </span>
+        <span className="badge badge-emerald">
+          <span className="dot-online" style={{ width: "6px", height: "6px" }} />
+          Open to Opportunities
         </span>
       </div>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-          gap: "40px",
-          alignItems: "center",
-          textAlign: "left",
-        }}
-      >
-        {/* Left Column */}
+      {/* Main grid */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+        gap: "56px",
+        alignItems: "center",
+      }}>
+        {/* Left column */}
         <div>
           <h1
+            className="anim-left"
             style={{
-              fontSize: "clamp(34px, 5.2vw, 50px)",
-              lineHeight: 1.15,
-              fontWeight: 800,
-              marginBottom: "16px",
-              color: "#ffffff",
+              fontSize: "clamp(38px, 5.5vw, 58px)",
+              fontWeight: 900,
+              lineHeight: 1.08,
+              letterSpacing: "-0.04em",
+              marginBottom: "8px",
+              color: "var(--text-primary)",
             }}
           >
-            Hi, I'm <span className="gradient-text">{name || "Harsh Shah"}</span>.
-            <br />
-            <span style={{ fontSize: "0.8em", color: "#86efac", fontWeight: 600 }}>
-              Cybersecurity Researcher & Full-Stack Architect.
-            </span>
+            Hi, I'm{" "}
+            <span className="shimmer-text">{name || "Harsh Shah"}</span>
           </h1>
 
-          <p
+          <div
+            className="anim-left"
             style={{
-              fontSize: "16px",
-              color: "#bbf7d0",
-              lineHeight: 1.65,
-              marginBottom: "28px",
-              maxWidth: "560px",
+              fontSize: "clamp(18px, 2.5vw, 24px)",
+              fontWeight: 600,
+              color: "var(--text-secondary)",
+              marginBottom: "20px",
+              letterSpacing: "-0.02em",
+              animationDelay: "0.06s",
+              fontFamily: "var(--font-mono)",
             }}
           >
-            Engineering robust defense frameworks, conducting web application vulnerability assessments,
-            and containerizing production-grade full-stack architectures with zero-trust design.
-          </p>
-
-          {/* Action CTAs */}
-          <div style={{ display: "flex", gap: "14px", flexWrap: "wrap", marginBottom: "34px" }}>
-            <Link to="/projects" className="btn-cyber-primary">
-              <span>Inspect Codebase</span>
-              <ArrowRight size={16} />
-            </Link>
-
-            <Link to="/tools" className="btn-cyber-secondary">
-              <Wrench size={16} />
-              <span>Launch Cyber Lab</span>
-            </Link>
+            <TypeWriter
+              strings={[
+                "Cybersecurity Researcher",
+                "Full-Stack Architect",
+                "DevSecOps Engineer",
+                "Penetration Tester",
+              ]}
+            />
           </div>
 
-          {/* Mini Stat Chips */}
-          <div
+          <p
+            className="anim-left"
             style={{
-              display: "flex",
-              gap: "20px",
-              flexWrap: "wrap",
-              borderTop: "1px solid rgba(0, 255, 102, 0.2)",
-              paddingTop: "22px",
+              fontSize: "16px",
+              color: "var(--text-secondary)",
+              lineHeight: 1.7,
+              maxWidth: "500px",
+              marginBottom: "36px",
+              animationDelay: "0.12s",
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              <Lock size={16} color="#00ff66" />
-              <span style={{ fontSize: "13px", color: "#dcfce7", fontWeight: 500 }}>OWASP Top 10 Auditing</span>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              <Server size={16} color="#00ff66" />
-              <span style={{ fontSize: "13px", color: "#dcfce7", fontWeight: 500 }}>Multi-Container Docker</span>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              <Cpu size={16} color="#00ff66" />
-              <span style={{ fontSize: "13px", color: "#dcfce7", fontWeight: 500 }}>High-Performance React</span>
-            </div>
+            5th-semester B.Tech IT student building secure, high-performance
+            full-stack systems. Specializing in web application security, OWASP
+            auditing, and containerized architectures.
+          </p>
+
+          {/* CTAs */}
+          <div
+            className="anim-left"
+            style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "44px", animationDelay: "0.18s" }}
+          >
+            <Link to="/projects" className="btn-primary">
+              View Projects
+              <ArrowRight size={16} />
+            </Link>
+            <Link to="/contact" className="btn-secondary">
+              Get in Touch
+            </Link>
+            <a
+              href="https://github.com/HarshmShah0106"
+              target="_blank"
+              rel="noreferrer"
+              className="btn-secondary"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                <path d="M9 18c-4.51 2-5-2-7-2"/>
+              </svg>
+              GitHub
+            </a>
+          </div>
+
+          {/* Stats row */}
+          <div
+            className="anim-left"
+            style={{
+              display: "flex",
+              gap: "0",
+              borderTop: "1px solid var(--border)",
+              paddingTop: "28px",
+              flexWrap: "wrap",
+              animationDelay: "0.24s",
+            }}
+          >
+            {stats.map((s, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: "0 24px",
+                  borderRight: i < stats.length - 1 ? "1px solid var(--border)" : "none",
+                  minWidth: "100px",
+                  marginBottom: "12px",
+                }}
+              >
+                <div style={{ fontSize: "15px", fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-mono)" }}>
+                  {s.value}
+                </div>
+                <div style={{ fontSize: "11.5px", color: "var(--text-muted)", marginTop: "2px" }}>
+                  {s.label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Right Column: Neon Terminal Window */}
-        <div>
-          <div className="terminal-window">
-            <div className="terminal-header">
-              <span className="terminal-dot dot-red"></span>
-              <span className="terminal-dot dot-yellow"></span>
-              <span className="terminal-dot dot-green"></span>
-              <span className="terminal-title">harsh@cybersec-ops:~ (bash)</span>
+        {/* Right column — terminal */}
+        <div className="anim-right" style={{ animationDelay: "0.1s" }}>
+          <div className="terminal">
+            <div className="terminal-bar">
+              <span className="t-dot t-red" />
+              <span className="t-dot t-yellow" />
+              <span className="t-dot t-green" />
+              <span className="terminal-title">harsh@portfolio:~ </span>
             </div>
-
-            <div className="terminal-body" style={{ color: "#dcfce7" }}>
-              <div style={{ marginBottom: "12px" }}>
-                <span style={{ color: "#00ff66", fontWeight: "bold" }}>harsh@cybersec</span>
-                <span style={{ color: "#4ade80" }}>:</span>
-                <span style={{ color: "#86efac" }}>~</span>
-                <span style={{ color: "#00ff66" }}>$ </span>
-                <span style={{ color: "#ffffff", fontWeight: 600 }}>whoami</span>
-                <div style={{ color: "#86efac", marginLeft: "14px", marginTop: "4px" }}>
-                  → Harsh Shah // Cybersecurity Researcher & Full-Stack Engineer
-                </div>
-              </div>
-
-              <div style={{ marginBottom: "12px" }}>
-                <span style={{ color: "#00ff66", fontWeight: "bold" }}>harsh@cybersec</span>
-                <span style={{ color: "#4ade80" }}>:</span>
-                <span style={{ color: "#86efac" }}>~</span>
-                <span style={{ color: "#00ff66" }}>$ </span>
-                <span style={{ color: "#ffffff", fontWeight: 600 }}>cat defense-matrix.json</span>
-                <div
-                  style={{
-                    color: "#00ff66",
-                    background: "rgba(0, 255, 102, 0.06)",
-                    borderLeft: "2px solid #00ff66",
-                    padding: "8px 12px",
-                    marginTop: "5px",
-                    borderRadius: "0 6px 6px 0",
-                    fontSize: "12.5px",
-                  }}
-                >
-                  {"{"}
-                  <br />
-                  &nbsp;&nbsp;"offensive": "Penetration Testing, XSS, SQLi, CSRF",
-                  <br />
-                  &nbsp;&nbsp;"defensive": "JWT Authentication, Bcrypt, Node-Cache",
-                  <br />
-                  &nbsp;&nbsp;"infrastructure": "Docker Compose, Bridge Networks, Alpine"
-                  <br />
-                  {"}"}
-                </div>
-              </div>
-
-              <div>
-                <span style={{ color: "#00ff66", fontWeight: "bold" }}>harsh@cybersec</span>
-                <span style={{ color: "#4ade80" }}>:</span>
-                <span style={{ color: "#86efac" }}>~</span>
-                <span style={{ color: "#00ff66" }}>$ </span>
-                <span style={{ color: "#ffffff", fontWeight: 600 }}>systemctl status security-grid</span>
-                <div style={{ color: "#00ff66", marginLeft: "14px", marginTop: "4px" }}>
-                  ● ACTIVE (Running) • Microservices Encrypted <span className="cursor-blink">_</span>
-                </div>
-              </div>
+            <div className="terminal-body">
+              <TerminalLines />
             </div>
+          </div>
+
+          {/* Tech stack pill cloud below terminal */}
+          <div style={{
+            display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "18px",
+          }}>
+            {tech.map((t, i) => (
+              <span
+                key={i}
+                className="badge badge-muted"
+                style={{ animationDelay: `${i * 0.03}s`, cursor: "default" }}
+              >
+                {t}
+              </span>
+            ))}
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function TerminalLines() {
+  const lines = [
+    { type: "cmd", text: "whoami" },
+    { type: "out", text: "Harsh Shah — Cybersecurity Researcher & Full-Stack Engineer", color: "var(--text-primary)" },
+    { type: "gap" },
+    { type: "cmd", text: "cat skills.json | jq '.focus'" },
+    { type: "code", lines: [
+      '  "OWASP Top 10 Mitigation",',
+      '  "Web Application Pentesting",',
+      '  "JWT + Bcrypt Auth Pipelines",',
+      '  "Docker Compose Orchestration"',
+    ]},
+    { type: "gap" },
+    { type: "cmd", text: "systemctl status career" },
+    { type: "out", text: "● ACTIVE — Seeking internship opportunities", color: "#34d399" },
+    { type: "blink" },
+  ];
+
+  const [visible, setVisible] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setVisible(v => v < lines.length ? v + 1 : v), 180);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <>
+      {lines.slice(0, visible).map((l, i) => {
+        if (l.type === "gap") return <div key={i} style={{ height: "6px" }} />;
+        if (l.type === "cmd") return (
+          <div key={i} style={{ marginBottom: "3px", animation: "fadeIn 0.2s ease both" }}>
+            <span style={{ color: "#818cf8" }}>harsh</span>
+            <span style={{ color: "var(--text-faint)" }}>@portfolio</span>
+            <span style={{ color: "var(--text-muted)" }}>:~$ </span>
+            <span style={{ color: "var(--text-primary)", fontWeight: 500 }}>{l.text}</span>
+          </div>
+        );
+        if (l.type === "out") return (
+          <div key={i} style={{ color: l.color || "var(--text-secondary)", marginLeft: "2px", marginBottom: "3px", animation: "fadeIn 0.2s ease both", fontSize: "12.5px" }}>
+            → {l.text}
+          </div>
+        );
+        if (l.type === "code") return (
+          <div key={i} style={{
+            background: "rgba(99,102,241,0.06)", borderLeft: "2px solid rgba(99,102,241,0.4)",
+            padding: "8px 12px", borderRadius: "0 6px 6px 0", marginBottom: "3px",
+            animation: "fadeIn 0.2s ease both", fontSize: "12px",
+          }}>
+            {"["}
+            {l.lines.map((line, j) => <div key={j} style={{ color: "#94a3b8" }}>{line}</div>)}
+            {"]"}
+          </div>
+        );
+        if (l.type === "blink") return (
+          <div key={i} style={{ marginTop: "4px" }}>
+            <span style={{ color: "#818cf8" }}>harsh</span>
+            <span style={{ color: "var(--text-faint)" }}>@portfolio</span>
+            <span style={{ color: "var(--text-muted)" }}>:~$ </span>
+            <span className="cursor-blink"> </span>
+          </div>
+        );
+        return null;
+      })}
+    </>
   );
 }
 

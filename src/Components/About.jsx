@@ -1,118 +1,92 @@
-import { ShieldAlert, Server, Layers, Terminal, CheckCircle } from "lucide-react";
+import { ShieldAlert, Server, Layers, CheckCircle2, ArrowUpRight } from "lucide-react";
+
+const pillars = [
+  {
+    ib: "ib-indigo",
+    icon: <ShieldAlert size={20} />,
+    badge: "badge-indigo",
+    badgeText: "Vulnerability Assessment",
+    title: "Cybersecurity & Defensive Auditing",
+    desc: "Specialized in OWASP Top 10 remediation, web application vulnerability assessment, and building defense against SQLi, XSS, CSRF, and broken access control.",
+    delay: "0s",
+  },
+  {
+    ib: "ib-violet",
+    icon: <Server size={20} />,
+    badge: "badge-violet",
+    badgeText: "Docker / Compose",
+    title: "DevSecOps & Multi-Container Docker",
+    desc: "Orchestrating microservices with Docker Compose, establishing segmented bridge networks, and producing minimal multi-stage Alpine images for reduced attack surfaces.",
+    delay: "0.08s",
+  },
+  {
+    ib: "ib-sky",
+    icon: <Layers size={20} />,
+    badge: "badge-sky",
+    badgeText: "Secure MERN Stack",
+    title: "Full-Stack Security Architecture",
+    desc: "Building high-throughput systems with React 19, Express, MongoDB, and in-memory caching pipelines (node-cache) delivering sub-10ms response latencies.",
+    delay: "0.16s",
+  },
+];
 
 function About() {
-  const pillars = [
-    {
-      icon: <ShieldAlert size={22} color="#00ff66" />,
-      title: "Cyber Security & Defensive Auditing",
-      desc: "Specialized in web application security analysis, OWASP Top 10 vulnerability remediation, and building defense against injection attacks, broken access control, and token exploitation.",
-      tag: "Vulnerability Assessment",
-    },
-    {
-      icon: <Server size={22} color="#00ff66" />,
-      title: "DevSecOps & Multi-Container Docker",
-      desc: "Orchestrating microservices with Docker & Docker Compose, establishing segmented internal bridge networks, and producing minimal multi-stage Alpine images for reduced attack surfaces.",
-      tag: "Docker / Compose",
-    },
-    {
-      icon: <Layers size={22} color="#00ff66" />,
-      title: "Full-Stack Security Architecture",
-      desc: "Building high-throughput full-stack systems with React 19, Express, MongoDB, and in-memory query caching pipelines (node-cache) delivering sub-10ms response latencies.",
-      tag: "Secure MERN Stack",
-    },
-  ];
-
   return (
-    <section style={{ padding: "40px 0" }}>
+    <section style={{ padding: "20px 0 48px" }}>
       {/* Section Header */}
-      <div style={{ textAlign: "left", marginBottom: "30px" }}>
-        <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
-          <Terminal size={14} color="#00ff66" />
-          <span style={{ fontSize: "12px", color: "#00ff66", fontFamily: "var(--font-mono)", fontWeight: 700 }}>
-            SECURITY PROFILE // IDENTITY
-          </span>
-        </div>
-        <h2 style={{ fontSize: "28px", color: "#ffffff", fontWeight: 700 }}>
-          Defensive Engineering & Threat Analysis
+      <div className="anim-up" style={{ marginBottom: "36px" }}>
+        <div className="section-label">Security Profile</div>
+        <h2 className="section-heading" style={{ marginBottom: "12px" }}>
+          About <span className="gradient-text">Harsh Shah</span>
         </h2>
-        <p style={{ color: "#bbf7d0", fontSize: "15px", maxWidth: "700px", marginTop: "6px" }}>
-          I am a 5th-semester B.Tech Information Technology student specializing in applied cybersecurity, defensive architecture, and modern full-stack frameworks.
-          My passion lies at the intersection of offensive security understanding and robust defensive engineering — ensuring systems are both high-performing and impenetrable.
+        <p style={{ color: "var(--text-secondary)", fontSize: "15.5px", maxWidth: "680px", lineHeight: 1.7 }}>
+          5th-semester B.Tech Information Technology student at the intersection of offensive security
+          understanding and robust defensive engineering. Passionate about building systems that are
+          both high-performing and inherently secure.
         </p>
       </div>
 
-      {/* 3 Core Pillars */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-          gap: "22px",
-          textAlign: "left",
-        }}
-      >
-        {pillars.map((item, idx) => (
+      {/* Cards */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))",
+        gap: "18px",
+      }}>
+        {pillars.map((p, idx) => (
           <div
             key={idx}
-            className="cyber-card"
+            className="card"
             style={{
               padding: "26px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
+              animationName: "fadeUp",
+              animationDuration: "0.5s",
+              animationDelay: p.delay,
+              animationFillMode: "both",
+              animationTimingFunction: "cubic-bezier(0.16,1,0.3,1)",
+              cursor: "default",
             }}
           >
-            <div>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginBottom: "18px",
-                }}
-              >
-                <div
-                  style={{
-                    width: "46px",
-                    height: "46px",
-                    borderRadius: "10px",
-                    background: "rgba(0, 255, 102, 0.1)",
-                    border: "1px solid rgba(0, 255, 102, 0.4)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    boxShadow: "0 0 15px rgba(0, 255, 102, 0.2)",
-                  }}
-                >
-                  {item.icon}
-                </div>
-                <span className="cyber-badge">{item.tag}</span>
+            <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "12px", marginBottom: "18px" }}>
+              <div className={`icon-box ${p.ib}`}>
+                {p.icon}
               </div>
-
-              <h3 style={{ fontSize: "18.5px", color: "#ffffff", marginBottom: "10px" }}>
-                {item.title}
-              </h3>
-
-              <p style={{ fontSize: "14px", color: "#86efac", lineHeight: 1.6 }}>
-                {item.desc}
-              </p>
+              <span className={`badge ${p.badge}`}>{p.badgeText}</span>
             </div>
 
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "7px",
-                marginTop: "20px",
-                paddingTop: "14px",
-                borderTop: "1px solid rgba(0, 255, 102, 0.15)",
-                fontSize: "12px",
-                color: "#00ff66",
-                fontFamily: "var(--font-mono)",
-                fontWeight: 600,
-              }}
-            >
-              <CheckCircle size={15} />
-              <span>Verified Domain Knowledge</span>
+            <h3 style={{ fontSize: "16px", color: "var(--text-primary)", fontWeight: 700, marginBottom: "10px", lineHeight: 1.35 }}>
+              {p.title}
+            </h3>
+            <p style={{ fontSize: "13.5px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
+              {p.desc}
+            </p>
+
+            <div style={{
+              display: "flex", alignItems: "center", gap: "6px",
+              marginTop: "20px", paddingTop: "16px", borderTop: "1px solid var(--border)",
+              fontSize: "12px", color: "var(--text-muted)",
+            }}>
+              <CheckCircle2 size={13} style={{ color: "var(--emerald)" }} />
+              <span style={{ fontFamily: "var(--font-mono)" }}>Verified Domain Knowledge</span>
             </div>
           </div>
         ))}

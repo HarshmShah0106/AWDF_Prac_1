@@ -1,8 +1,9 @@
 import Header from "./Header";
 import About from "./About";
+import Certifications from "./Certifications";
 import Skills from "./Skills";
 import { Link } from "react-router-dom";
-import { ShieldCheck, FolderGit2, Wrench, ArrowRight } from "lucide-react";
+import { Terminal, FolderOpen, ArrowRight, Sparkles, Shield, Cpu } from "lucide-react";
 
 function Home() {
   return (
@@ -10,52 +11,65 @@ function Home() {
       {/* Hero Section */}
       <Header name="Harsh Shah" />
 
+      {/* Subtle Divider */}
+      <div className="divider" />
+
       {/* About Section */}
       <About />
 
-      {/* Skills Matrix */}
+      {/* Divider */}
+      <div className="divider" />
+
+      {/* Certifications Section */}
+      <Certifications />
+
+      {/* Divider */}
+      <div className="divider" />
+
+      {/* Technical Arsenal & Skills Matrix */}
       <Skills />
 
-      {/* Quick Launch Banner */}
-      <section style={{ margin: "40px 0 20px", textAlign: "left" }}>
+      {/* Interactive Cyber Lab Callout Card */}
+      <section style={{ margin: "40px 0 20px" }}>
         <div
-          className="cyber-card"
+          className="card card-accent"
           style={{
-            padding: "36px",
-            background: "linear-gradient(135deg, rgba(6, 17, 9, 0.95) 0%, rgba(4, 12, 6, 0.98) 100%)",
-            border: "1px solid #00ff66",
-            boxShadow: "0 0 25px rgba(0, 255, 102, 0.25)",
+            padding: "40px",
+            background: "linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.05) 50%, rgba(6, 7, 17, 0.95) 100%)",
+            border: "1px solid rgba(99, 102, 241, 0.25)",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
             flexWrap: "wrap",
-            gap: "24px",
+            gap: "28px",
+            borderRadius: "16px",
           }}
         >
-          <div>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", marginBottom: "8px" }}>
-              <ShieldCheck size={16} color="#00ff66" />
-              <span style={{ fontSize: "12px", color: "#00ff66", fontFamily: "var(--font-mono)", fontWeight: 700 }}>
-                INTERACTIVE CYBERSECURITY WORKBENCH ACTIVE
+          <div style={{ maxWidth: "620px", textAlign: "left" }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
+              <span className="badge badge-indigo">
+                <Sparkles size={12} />
+                Client-Side Security Workbench
               </span>
             </div>
-            <h3 style={{ fontSize: "23px", color: "#ffffff", marginBottom: "6px", fontWeight: 700 }}>
-              Test Password Entropy & Compute Cryptographic Hashes
+            <h3 style={{ fontSize: "24px", color: "var(--text-primary)", fontWeight: 800, marginBottom: "10px", letterSpacing: "-0.02em" }}>
+              Explore the Interactive Cyber Laboratory
             </h3>
-            <p style={{ color: "#86efac", fontSize: "14.5px", maxWidth: "620px" }}>
-              Explore real-time client-side cryptographic tools including SHA-256 generation, bit entropy analyzer, and Base64 encoders directly in your browser.
+            <p style={{ color: "var(--text-secondary)", fontSize: "15px", lineHeight: 1.65 }}>
+              Test Shannon bit entropy, compute native Web Cryptography hash digests (SHA-256 / SHA-512),
+              and test Base64 transformers live in your browser — zero tracking, completely client-side.
             </p>
           </div>
 
-          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-            <Link to="/tools" className="btn-cyber-primary">
-              <Wrench size={16} />
-              <span>Open Cyber Lab</span>
+          <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
+            <Link to="/tools" className="btn-primary" style={{ padding: "12px 24px" }}>
+              <Terminal size={16} />
+              <span>Launch Cyber Lab</span>
               <ArrowRight size={15} />
             </Link>
-            <Link to="/projects" className="btn-cyber-secondary">
-              <FolderGit2 size={16} />
-              <span>Browse Repositories</span>
+            <Link to="/projects" className="btn-secondary" style={{ padding: "12px 24px" }}>
+              <FolderOpen size={16} />
+              <span>Browse Codebase</span>
             </Link>
           </div>
         </div>

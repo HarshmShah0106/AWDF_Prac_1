@@ -1,103 +1,126 @@
 import { useState } from "react";
-import { ShieldAlert, Code2, Terminal, Cpu } from "lucide-react";
+import { ShieldCheck, Code2, Terminal, Cpu, Check, Layers, Wrench, Lock } from "lucide-react";
+
+const skillGroups = [
+  {
+    category: "cyber",
+    name: "Cybersecurity & Defensive Auditing",
+    icon: <Lock size={18} />,
+    color: "indigo",
+    items: [
+      { name: "OWASP Top 10 Mitigation", level: "Advanced", desc: "SQLi, XSS, CSRF, IDOR prevention & secure coding" },
+      { name: "Web Application Pentesting", level: "Proficient", desc: "Security auditing with Burp Suite & intercepting proxies" },
+      { name: "Bcrypt & JWT Auth Pipelines", level: "Advanced", desc: "Password salting, claims validation, stateless session tokens" },
+      { name: "Applied Cryptography & Hashing", level: "Proficient", desc: "SHA-256, AES-256, HMAC verification & digital signatures" },
+      { name: "Linux System Hardening", level: "Proficient", desc: "Principle of least privilege, iptables, SSH key management" },
+      { name: "Wireshark & Packet Analysis", level: "Competent", desc: "Protocol decoding, packet sniffing, anomalous traffic detection" },
+    ],
+  },
+  {
+    category: "dev",
+    name: "Full-Stack Web Engineering",
+    icon: <Code2 size={18} />,
+    color: "violet",
+    items: [
+      { name: "React 19 & React Router", level: "Advanced", desc: "Component architecture, hooks, suspense, client-side routing" },
+      { name: "Node.js & Express.js", level: "Advanced", desc: "RESTful architecture, custom middleware, rate-limiting, CORS" },
+      { name: "JavaScript (ES6+) & TypeScript", level: "Advanced", desc: "Async/await, closures, type definitions, modularity" },
+      { name: "Vite Bundler & Modern Tooling", level: "Proficient", desc: "Ultra-fast HMR, asset hashing, and production build pipelines" },
+      { name: "Modern CSS & Responsive UI", level: "Advanced", desc: "Flexbox, CSS Grid, custom properties, mobile-first design" },
+      { name: "MongoDB & Mongoose ODM", level: "Proficient", desc: "Schema validation, indexing, aggregation pipelines, CRUD" },
+    ],
+  },
+  {
+    category: "devops",
+    name: "DevSecOps & Infrastructure",
+    icon: <Terminal size={18} />,
+    color: "sky",
+    items: [
+      { name: "Docker Containerization", level: "Advanced", desc: "Multi-stage builds, non-root user execution, Alpine images" },
+      { name: "Docker Compose Orchestration", level: "Advanced", desc: "Multi-service stacks, segmented bridge networks, env isolation" },
+      { name: "In-Memory Caching (node-cache)", level: "Advanced", desc: "Query acceleration, TTL invalidation, sub-10ms response times" },
+      { name: "Git & Version Control Workflows", level: "Advanced", desc: "Feature branching, pull requests, semantic commit conventions" },
+      { name: "Bash & Linux Shell Scripting", level: "Proficient", desc: "System automation, service inspection, pipeline scripting" },
+      { name: "Persistent Storage Volumes", level: "Proficient", desc: "Named docker volumes, backup workflows, database persistence" },
+    ],
+  },
+];
+
+const filterTabs = [
+  { id: "all", label: "All Arsenal" },
+  { id: "cyber", label: "Cybersecurity & Defense" },
+  { id: "dev", label: "Web Frameworks" },
+  { id: "devops", label: "DevSecOps & Docker" },
+];
+
+function getLevelBadge(level) {
+  switch (level) {
+    case "Advanced":
+      return { class: "badge-indigo", label: "Advanced" };
+    case "Proficient":
+      return { class: "badge-sky", label: "Proficient" };
+    default:
+      return { class: "badge-violet", label: "Competent" };
+  }
+}
 
 function Skills() {
   const [activeCategory, setActiveCategory] = useState("all");
-
-  const skillGroups = [
-    {
-      category: "cyber",
-      name: "Cyber Security & Defensive Auditing",
-      icon: <ShieldAlert size={19} color="#00ff66" />,
-      items: [
-        { name: "OWASP Top 10 Mitigation", level: "Advanced", desc: "SQLi, XSS, CSRF, IDOR prevention" },
-        { name: "Web Application Pentesting", level: "Proficient", desc: "Security auditing and intercepting proxies" },
-        { name: "Bcrypt & JWT Auth Pipelines", level: "Advanced", desc: "Password salting and stateless tokens" },
-        { name: "Cryptography & Hashing", level: "Proficient", desc: "SHA-256, AES-256, HMAC verification" },
-        { name: "Linux System Hardening", level: "Proficient", desc: "Permissions, iptables, SSH hardening" },
-        { name: "Wireshark & Packet Analysis", level: "Competent", desc: "Protocol decoding and packet sniffing" },
-      ],
-    },
-    {
-      category: "dev",
-      name: "Modern Web Engineering",
-      icon: <Code2 size={19} color="#00ff66" />,
-      items: [
-        { name: "React 19 & React Router", level: "Advanced", desc: "Hooks, Suspense, code splitting" },
-        { name: "Node.js & Express.js", level: "Advanced", desc: "RESTful architecture, custom middleware" },
-        { name: "JavaScript (ES6+) & TypeScript", level: "Advanced", desc: "Async/await, closures, modularity" },
-        { name: "Vite Bundler & Rolldown", level: "Proficient", desc: "Ultra-fast HMR and preview servers" },
-        { name: "HTML5, CSS3 & Responsive UI", level: "Advanced", desc: "Modern layouts, flexbox, CSS grid" },
-        { name: "MongoDB & Mongoose ODM", level: "Proficient", desc: "Schema design, indexing, CRUD" },
-      ],
-    },
-    {
-      category: "devops",
-      name: "DevSecOps & Infrastructure",
-      icon: <Terminal size={19} color="#00ff66" />,
-      items: [
-        { name: "Docker Containerization", level: "Advanced", desc: "Custom Dockerfiles, multi-stage builds" },
-        { name: "Docker Compose Orchestration", level: "Advanced", desc: "Multi-service stacks, bridge networks" },
-        { name: "In-Memory Caching (node-cache)", level: "Advanced", desc: "Query speedup and TTL invalidation" },
-        { name: "Git & Version Control", level: "Advanced", desc: "Branching strategies, CI/CD fundamentals" },
-        { name: "Bash & Linux CLI", level: "Proficient", desc: "Automation scripts, Linux workflows" },
-        { name: "Persistent Storage Volumes", level: "Proficient", desc: "Named storage and stateful containers" },
-      ],
-    },
-  ];
 
   const filteredGroups = activeCategory === "all"
     ? skillGroups
     : skillGroups.filter((g) => g.category === activeCategory);
 
   return (
-    <section style={{ padding: "40px 0" }}>
+    <section style={{ padding: "40px 0 30px" }}>
       {/* Section Header */}
       <div
+        className="anim-up"
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "flex-end",
           flexWrap: "wrap",
-          gap: "16px",
-          marginBottom: "30px",
+          gap: "18px",
+          marginBottom: "36px",
           textAlign: "left",
         }}
       >
         <div>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
-            <Cpu size={14} color="#00ff66" />
-            <span style={{ fontSize: "12px", color: "#00ff66", fontFamily: "var(--font-mono)", fontWeight: 700 }}>
-              TECHNICAL ARSENAL // SKILLS
-            </span>
-          </div>
-          <h2 style={{ fontSize: "28px", color: "#ffffff", fontWeight: 700 }}>
-            Categorized Competencies
+          <div className="section-label">Technical Arsenal</div>
+          <h2 className="section-heading">
+            Core Competencies & <span className="gradient-text">Skills Matrix</span>
           </h2>
+          <p style={{ color: "var(--text-secondary)", fontSize: "15px", maxWidth: "600px", marginTop: "6px" }}>
+            Proven technical foundation across defensive security auditing, modern frontend frameworks,
+            and containerized DevSecOps workflows.
+          </p>
         </div>
 
-        {/* Filter Buttons */}
-        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-          {[
-            { id: "all", label: "All Skills" },
-            { id: "cyber", label: "Cyber Security" },
-            { id: "dev", label: "Web Frameworks" },
-            { id: "devops", label: "DevOps & Docker" },
-          ].map((tab) => (
+        {/* Filter Tabs */}
+        <div style={{
+          display: "flex",
+          gap: "6px",
+          flexWrap: "wrap",
+          background: "rgba(255, 255, 255, 0.02)",
+          padding: "6px",
+          borderRadius: "10px",
+          border: "1px solid var(--border)",
+        }}>
+          {filterTabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveCategory(tab.id)}
               style={{
-                background: activeCategory === tab.id ? "rgba(0, 255, 102, 0.2)" : "rgba(6, 17, 9, 0.7)",
-                color: activeCategory === tab.id ? "#00ff66" : "#a7f3d0",
-                border: activeCategory === tab.id ? "1px solid #00ff66" : "1px solid rgba(0, 255, 102, 0.25)",
-                boxShadow: activeCategory === tab.id ? "0 0 15px rgba(0, 255, 102, 0.3)" : "none",
+                background: activeCategory === tab.id ? "rgba(99, 102, 241, 0.18)" : "transparent",
+                color: activeCategory === tab.id ? "#c7d2fe" : "var(--text-secondary)",
+                border: activeCategory === tab.id ? "1px solid rgba(99, 102, 241, 0.35)" : "1px solid transparent",
                 padding: "7px 15px",
-                borderRadius: "6px",
+                borderRadius: "8px",
                 fontSize: "13px",
-                fontWeight: 600,
+                fontWeight: 500,
                 cursor: "pointer",
-                transition: "all 0.2s ease",
+                transition: "all 0.18s ease",
               }}
             >
               {tab.label}
@@ -107,94 +130,94 @@ function Skills() {
       </div>
 
       {/* Skills Matrix */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "26px", textAlign: "left" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "24px", textAlign: "left" }}>
         {filteredGroups.map((group, gIdx) => (
-          <div key={gIdx} className="cyber-card" style={{ padding: "26px" }}>
+          <div key={gIdx} className="card" style={{ padding: "28px" }}>
+            {/* Group Header */}
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "10px",
+                gap: "12px",
                 marginBottom: "20px",
-                borderBottom: "1px solid rgba(0, 255, 102, 0.2)",
-                paddingBottom: "12px",
+                borderBottom: "1px solid var(--border)",
+                paddingBottom: "14px",
               }}
             >
-              {group.icon}
-              <h3 style={{ fontSize: "18.5px", color: "#ffffff" }}>{group.name}</h3>
+              <div className={`icon-box ib-${group.color}`}>
+                {group.icon}
+              </div>
+              <div>
+                <h3 style={{ fontSize: "17.5px", color: "var(--text-primary)", fontWeight: 700 }}>
+                  {group.name}
+                </h3>
+              </div>
               <span
                 style={{
-                  fontSize: "11.5px",
-                  color: "#00ff66",
+                  fontSize: "11px",
+                  color: "var(--text-muted)",
                   fontFamily: "var(--font-mono)",
                   marginLeft: "auto",
-                  background: "rgba(0, 255, 102, 0.1)",
-                  padding: "2px 8px",
-                  borderRadius: "4px",
-                  border: "1px solid rgba(0, 255, 102, 0.25)",
+                  background: "rgba(255, 255, 255, 0.04)",
+                  padding: "3px 10px",
+                  borderRadius: "6px",
+                  border: "1px solid var(--border)",
                 }}
               >
                 {group.items.length} MODULES
               </span>
             </div>
 
+            {/* Grid of Skill Cards */}
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
                 gap: "14px",
               }}
             >
-              {group.items.map((skill, sIdx) => (
-                <div
-                  key={sIdx}
-                  style={{
-                    background: "rgba(3, 8, 4, 0.8)",
-                    border: "1px solid rgba(0, 255, 102, 0.18)",
-                    borderRadius: "8px",
-                    padding: "14px 16px",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    transition: "all 0.2s ease",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "#00ff66";
-                    e.currentTarget.style.background = "rgba(6, 20, 10, 0.95)";
-                    e.currentTarget.style.boxShadow = "0 0 15px rgba(0, 255, 102, 0.25)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(0, 255, 102, 0.18)";
-                    e.currentTarget.style.background = "rgba(3, 8, 4, 0.8)";
-                    e.currentTarget.style.boxShadow = "none";
-                  }}
-                >
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "8px" }}>
-                    <span style={{ fontSize: "14px", fontWeight: 700, color: "#f0fdf4" }}>
-                      {skill.name}
-                    </span>
-                    <span
-                      style={{
-                        fontSize: "11px",
-                        fontFamily: "var(--font-mono)",
-                        fontWeight: 600,
-                        color: "#00ff66",
-                        background: "rgba(0, 255, 102, 0.15)",
-                        border: "1px solid rgba(0, 255, 102, 0.4)",
-                        padding: "2px 6px",
-                        borderRadius: "4px",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {skill.level}
-                    </span>
-                  </div>
+              {group.items.map((skill, sIdx) => {
+                const badge = getLevelBadge(skill.level);
 
-                  <p style={{ fontSize: "12.5px", color: "#86efac", marginTop: "6px" }}>
-                    {skill.desc}
-                  </p>
-                </div>
-              ))}
+                return (
+                  <div
+                    key={sIdx}
+                    style={{
+                      background: "rgba(255, 255, 255, 0.02)",
+                      border: "1px solid var(--border)",
+                      borderRadius: "10px",
+                      padding: "16px 18px",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      transition: "all 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = "var(--border-strong)";
+                      e.currentTarget.style.background = "rgba(255, 255, 255, 0.045)";
+                      e.currentTarget.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = "var(--border)";
+                      e.currentTarget.style.background = "rgba(255, 255, 255, 0.02)";
+                      e.currentTarget.style.transform = "translateY(0)";
+                    }}
+                  >
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "10px", marginBottom: "8px" }}>
+                      <span style={{ fontSize: "14px", fontWeight: 600, color: "var(--text-primary)" }}>
+                        {skill.name}
+                      </span>
+                      <span className={`badge ${badge.class}`} style={{ fontSize: "10.5px" }}>
+                        {badge.label}
+                      </span>
+                    </div>
+
+                    <p style={{ fontSize: "12.5px", color: "var(--text-secondary)", lineHeight: 1.55 }}>
+                      {skill.desc}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         ))}

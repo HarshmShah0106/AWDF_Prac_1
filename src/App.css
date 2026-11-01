@@ -12,3 +12,8 @@
 .grid-cols-3 {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
+
+/* Security Tools Tab Transition */
+.tool-tab-content {
+  animation: fadeInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
